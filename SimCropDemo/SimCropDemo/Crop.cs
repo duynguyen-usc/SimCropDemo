@@ -11,13 +11,14 @@ namespace SimCropDemo
     {
         public enum CropType
         {
+            None,
             Wheat,
             Corn,
             Soybean
         }
 
-        public DateTime DatePlanted;
-        private readonly CropType kind;
+        public DateTime DatePlanted = default(DateTime);
+        private CropType kind = CropType.None;
 
         public Crop(CropType ct)
         {
