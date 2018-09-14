@@ -10,24 +10,28 @@ namespace UnitTest
         [TestMethod]
         public void CropTest()
         {
-            var wheat = new Crop(Crop.CropType.Wheat);
-            var corn = new Crop(Crop.CropType.Corn);
-            var soybean = new Crop(Crop.CropType.Soybean);
-
             const int WHEAT_RATE = 1;
             const int CORN_RATE = 2;
             const int SOYBEAN_RATE = 3;
+
+            var wheat = new Crop(Crop.TypesOfCrop.Wheat);
+            var corn = new Crop(Crop.TypesOfCrop.Corn);
+            var soybean = new Crop(Crop.TypesOfCrop.Soybean);
+
+
+            Assert.AreEqual("Wheat", wheat.CropType.ToString());
+            Assert.AreEqual("Corn", corn.CropType.ToString());
+            Assert.AreEqual("Soybean", soybean.CropType.ToString());
 
             Assert.AreEqual(WHEAT_RATE, wheat.GetGrowthRate());
             Assert.AreEqual(CORN_RATE, corn.GetGrowthRate());
             Assert.AreEqual(SOYBEAN_RATE, soybean.GetGrowthRate());
 
-            DateTime plantedTime = DateTime.Now.AddMinutes(-100);
-
             Assert.AreEqual(wheat.GetHeight(), 0);
             Assert.AreEqual(corn.GetHeight(), 0);
             Assert.AreEqual(soybean.GetHeight(), 0);
 
+            DateTime plantedTime = DateTime.Now.AddMinutes(-100);
             wheat.DatePlanted = plantedTime;
             corn.DatePlanted = plantedTime;
             soybean.DatePlanted = plantedTime;
