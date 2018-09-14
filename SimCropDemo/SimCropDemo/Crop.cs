@@ -20,7 +20,7 @@ namespace SimCropDemo
         private readonly CropType Kind;
         private readonly DateTime DatePlanted;
 
-        Crop(CropType ct)
+        public Crop(CropType ct)
         {
             Kind = ct;
             setGrowthRate();
@@ -41,13 +41,13 @@ namespace SimCropDemo
         {
             switch (Kind)
             {
-                case CropType.Corn:
+                case CropType.Wheat:
                     GrowthRate = 1;
                     break;
-                case CropType.Soybean:
+                case CropType.Corn:
                     GrowthRate = 2;
                     break;
-                case CropType.Wheat:
+                case CropType.Soybean:
                     GrowthRate = 3;
                     break;
                 default:
