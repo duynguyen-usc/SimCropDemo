@@ -49,10 +49,5 @@ namespace SimCropDemo
                     return 0;
             }
         }
-
-        public void Plant()
-        {
-            DatePlanted = DateTime.Now;
-        }
     }
 }
