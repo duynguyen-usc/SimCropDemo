@@ -16,43 +16,37 @@ namespace SimCropDemo
             Soybean
         }
 
-        private int GrowthRate; //cm per min
-        private readonly CropType Kind;
-        private readonly DateTime DatePlanted;
+        public DateTime DatePlanted;
+        private readonly CropType kind;
 
         public Crop(CropType ct)
         {
-            Kind = ct;
-            setGrowthRate();
+            kind = ct;
         }
 
-        public int getGrowthRate()
+
+        public double GetHeight() //cm
         {
-            return GrowthRate;
+            if (DatePlanted != default(DateTime))
+                return DateTime.Now.Subtract(DatePlanted).TotalMinutes * GetGrowthRate();
+            return 0;
         }
 
-        public double getHeight() //cm
+        public int GetGrowthRate()
         {
-            var now = DateTime.Now;
-            return now.Subtract(DatePlanted).TotalMinutes * GrowthRate;
-        }
-
-        private void setGrowthRate()
-        {
-            switch (Kind)
+            switch (kind)
             {
                 case CropType.Wheat:
-                    GrowthRate = 1;
-                    break;
+                    return 1;
+
                 case CropType.Corn:
-                    GrowthRate = 2;
-                    break;
+                    return 2;
+
                 case CropType.Soybean:
-                    GrowthRate = 3;
-                    break;
+                    return 3;
+
                 default:
-                    GrowthRate = 0;
-                    break;
+                    return 0;
             }
         }
     }
