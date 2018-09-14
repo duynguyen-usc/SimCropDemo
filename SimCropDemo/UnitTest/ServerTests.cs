@@ -22,8 +22,11 @@ namespace UnitTest
             Assert.AreEqual(CORN_RATE, corn.GetGrowthRate());
             Assert.AreEqual(SOYBEAN_RATE, soybean.GetGrowthRate());
 
-            const int MINUTES = 100;
-            DateTime plantedTime = DateTime.Now.AddMinutes(-MINUTES);
+            DateTime plantedTime = DateTime.Now.AddMinutes(-100);
+
+            Assert.AreEqual(wheat.GetHeight(), 0);
+            Assert.AreEqual(corn.GetHeight(), 0);
+            Assert.AreEqual(soybean.GetHeight(), 0);
 
             wheat.DatePlanted = plantedTime;
             corn.DatePlanted = plantedTime;
