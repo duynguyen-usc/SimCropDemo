@@ -10,6 +10,7 @@ namespace SimCropServer
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
