@@ -9,7 +9,7 @@ namespace SimCropDemo
     public class Field
     {
         public string Name;
-        private Crop Crop = new Crop();
+        public Crop Crop = new Crop();
 
         public Field(string name)
         {
@@ -21,12 +21,6 @@ namespace SimCropDemo
             Crop = crop;
             Crop.DatePlanted = DateTime.Now;
         }
-
-        public string GetCropType()
-        {
-            return "Nothing has been planted";
-        }
-
 
     }
 }

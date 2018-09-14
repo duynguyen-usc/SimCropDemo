@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimCropDemo;
 
@@ -44,5 +45,39 @@ namespace UnitTest
             Assert.AreEqual(true, cornHeight >= 196 && cornHeight <= 204);  // withn +/- 2%
             Assert.AreEqual(true, soybeanHeight >= 294 && soybeanHeight <= 306 ); // withn +/- 2%
         }
+        [TestMethod]
+        public void FieldTest()
+        {
+
+            List<Field> fields = new List<Field>();
+            fields.Add(new Field("wheatfield"));
+            fields.Add(new Field("cornfield"));
+            fields.Add(new Field("soybeanfield"));
+
+            Assert.AreEqual("wheatfield", fields[0].Name);
+            Assert.AreEqual("Undefined", fields[0].Crop.CropType.ToString());
+
+            Assert.AreEqual("cornfield", fields[1].Name);
+            Assert.AreEqual("Undefined", fields[1].Crop.CropType.ToString());
+
+            Assert.AreEqual("soybeanfield", fields[2].Name);
+            Assert.AreEqual("Undefined", fields[2].Crop.CropType.ToString());
+
+            fields[0].Plant(new Crop(Crop.TypesOfCrop.Wheat));
+            fields[1].Plant(new Crop(Crop.TypesOfCrop.Corn));
+            fields[2].Plant(new Crop(Crop.TypesOfCrop.Soybean));
+
+            System.Threading.Thread.Sleep(59000); // ~1 min
+
+            var field1CropHeight = fields[0].Crop.GetHeight();
+            var field2CropHeight = fields[1].Crop.GetHeight();
+            var field3CropHeight = fields[2].Crop.GetHeight();
+
+            Assert.AreEqual(true, field1CropHeight >= 0.95 && field1CropHeight <= 1.05); // within 5%
+            Assert.AreEqual(true, field2CropHeight >= 1.90 && field2CropHeight <= 2.10); // within 5%
+            Assert.AreEqual(true, field3CropHeight >= 2.85 && field3CropHeight <= 3.15); // within 5%
+
+        }
+
     }
 }
