@@ -52,7 +52,7 @@ namespace SimCropServer
             server = new SimpleTCP.SimpleTcpServer
             {
                 StringEncoder = Encoding.UTF8,
-                Delimiter = 0x13 // enter
+                Delimiter = 0x3b // semi-colon
             };
             server.DataReceived += ServerDataReceived;
         }
