@@ -79,5 +79,19 @@ namespace UnitTest
 
         }
 
+        [TestMethod]
+        public void SimServerTest()
+        {
+            var server = new SimCropServer.SimCropServer();
+
+            Assert.AreEqual(false, server.IsStarted());
+
+            server.Start();
+            Assert.AreEqual(true, server.IsStarted());
+
+            server.Stop();
+            Assert.AreEqual(false, server.IsStarted());
+        }
+
     }
 }
