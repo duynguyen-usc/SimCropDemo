@@ -6,23 +6,22 @@ using System.Threading.Tasks;
 
 namespace SimCropServer
 {
+    public enum CropType
+    {
+        Undefined,
+        Wheat,
+        Corn,
+        Soybean
+    }
 
     public class Crop
     {
-        public enum TypesOfCrop
-        {
-            Undefined,
-            Wheat,
-            Corn,
-            Soybean
-        }
-
         public DateTime DatePlanted = default(DateTime);
-        public TypesOfCrop CropType = TypesOfCrop.Undefined;
+        public CropType CropType = CropType.Undefined;
 
         public Crop() { }
 
-        public Crop(TypesOfCrop ct)
+        public Crop(CropType ct)
         {
             CropType = ct;
         }
@@ -39,13 +38,13 @@ namespace SimCropServer
         {
             switch (CropType)
             {
-                case TypesOfCrop.Wheat:
+                case CropType.Wheat:
                     return 1;
 
-                case TypesOfCrop.Corn:
+                case CropType.Corn:
                     return 2;
 
-                case TypesOfCrop.Soybean:
+                case CropType.Soybean:
                     return 3;
 
                 default:

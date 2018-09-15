@@ -15,9 +15,9 @@ namespace UnitTest
             const int CORN_RATE = 2;
             const int SOYBEAN_RATE = 3;
 
-            var wheat = new Crop(Crop.TypesOfCrop.Wheat);
-            var corn = new Crop(Crop.TypesOfCrop.Corn);
-            var soybean = new Crop(Crop.TypesOfCrop.Soybean);
+            var wheat = new Crop(CropType.Wheat);
+            var corn = new Crop(CropType.Corn);
+            var soybean = new Crop(CropType.Soybean);
 
 
             Assert.AreEqual("Wheat", wheat.CropType.ToString());
@@ -63,9 +63,9 @@ namespace UnitTest
             Assert.AreEqual("soybeanfield", fields[2].Name);
             Assert.AreEqual("Undefined", fields[2].Crop.CropType.ToString());
 
-            fields[0].Plant(new Crop(Crop.TypesOfCrop.Wheat));
-            fields[1].Plant(new Crop(Crop.TypesOfCrop.Corn));
-            fields[2].Plant(new Crop(Crop.TypesOfCrop.Soybean));
+            fields[0].Plant(new Crop(CropType.Wheat));
+            fields[1].Plant(new Crop(CropType.Corn));
+            fields[2].Plant(new Crop(CropType.Soybean));
 
             System.Threading.Thread.Sleep(59000); // ~1 min
 
@@ -76,6 +76,14 @@ namespace UnitTest
             Assert.AreEqual(true, field1CropHeight >= 0.95 && field1CropHeight <= 1.05); // within 5%
             Assert.AreEqual(true, field2CropHeight >= 1.90 && field2CropHeight <= 2.10); // within 5%
             Assert.AreEqual(true, field3CropHeight >= 2.85 && field3CropHeight <= 3.15); // within 5%
+
+            foreach(var field in fields)
+            {
+                field.Harvest();
+                Assert.AreEqual(CropType.Undefined, field.Crop.CropType);
+            }
+
+            
 
         }
 
