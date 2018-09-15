@@ -27,6 +27,7 @@ namespace CropClient
 
         private void frmClient_Load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
             txtIp.Text = IpAddress;
             txtPort.Text = Port.ToString();
             SetupClient();
@@ -65,8 +66,22 @@ namespace CropClient
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            client.WriteLineAndGetReply("Testing 123", TimeSpan.FromSeconds(10));
+            Send();
         }
+
+        private void Client_DataReceived(object sender, SimpleTCP.Message e)
+        {
+            rtxtConsole.Invoke((MethodInvoker)delegate ()
+            {
+                rtxtConsole.Text += e.MessageString + "\n";
+            });
+        }
+
+        private void ShowWarning(string warning, string title)
+        {
+            MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
         #endregion
 
         private void SetupClient()
@@ -82,20 +97,5 @@ namespace CropClient
         {
             client.WriteLineAndGetReply("Testing 123", TimeSpan.FromSeconds(10));
         }
-
-        private void Client_DataReceived(object sender, SimpleTCP.Message e)
-        {
-            rtxtConsole.Invoke((MethodInvoker)delegate () 
-            {
-                rtxtConsole.Text += e.MessageString + "\n";
-            });
-        }
-
-        private void ShowWarning(string warning, string title)
-        {
-            MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-
-
     }
 }
