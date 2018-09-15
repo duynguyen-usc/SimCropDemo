@@ -81,10 +81,9 @@ namespace UnitTest
             {
                 field.Harvest();
                 Assert.AreEqual(CropType.Undefined, field.Crop.CropType);
+                Assert.AreEqual(0, field.Crop.GetGrowthRate());
+                Assert.AreEqual(0, field.Crop.GetHeight());
             }
-
-            
-
         }
 
         [TestMethod]

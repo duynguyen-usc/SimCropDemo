@@ -25,7 +25,7 @@ namespace SimCropServer
 
         public void Harvest()
         {
-            Crop = new Crop(CropType.Undefined);
+            Crop.CropType = CropType.Undefined;
         }
 
     }
