@@ -23,7 +23,7 @@ namespace CropClient
             InitializeComponent();
         }
 
-        #region frmComponents
+        #region EventHandlers
 
         private void frmClient_Load(object sender, EventArgs e)
         {
