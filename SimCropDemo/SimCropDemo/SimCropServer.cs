@@ -49,15 +49,18 @@ namespace SimCropServer
 
         private void SetupServer()
         {
-            server = new SimpleTCP.SimpleTcpServer();
-            server.StringEncoder = Encoding.UTF8;
-            server.Delimiter = 0x13; // enter
+            server = new SimpleTCP.SimpleTcpServer
+            {
+                StringEncoder = Encoding.UTF8,
+                Delimiter = 0x13 // enter
+            };
             server.DataReceived += ServerDataReceived;
         }
 
-        private void ServerDataReceived(object sender, SimpleTCP.Message message)
+        private void ServerDataReceived(object sender, SimpleTCP.Message e)
         {
-            Console.WriteLine(message.MessageString);
+            Console.WriteLine(e.MessageString);
+            e.ReplyLine("Received: " + e.MessageString);
         }
     }
 }
