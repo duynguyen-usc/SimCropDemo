@@ -23,12 +23,51 @@ namespace CropClient
             InitializeComponent();
         }
 
+        #region frmComponents
+
         private void frmClient_Load(object sender, EventArgs e)
         {
             txtIp.Text = IpAddress;
             txtPort.Text = Port.ToString();
             SetupClient();
         }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            const string CONNECT = "Connect";
+            const string DISCONNECT = "Disconnect";
+
+            if (btnConnect.Text == CONNECT)
+            {
+                try
+                {
+                    client.Connect(IpAddress, Port);
+                    btnConnect.Text = DISCONNECT;
+                }
+                catch(Exception ex)
+                {
+                    ShowWarning(ex.Message, "Connection Failed");
+                }
+            }
+            else
+            {
+                try
+                {
+                    client.Disconnect();
+                    btnConnect.Text = CONNECT;
+                }
+                catch(Exception ex)
+                {
+                    ShowWarning(ex.Message, "Discconect Failed");
+                }
+            }
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            client.WriteLineAndGetReply("Testing 123", TimeSpan.FromSeconds(10));
+        }
+        #endregion
 
         private void SetupClient()
         {
@@ -39,6 +78,11 @@ namespace CropClient
             client.DataReceived += Client_DataReceived;
         }
 
+        private void Send()
+        {
+            client.WriteLineAndGetReply("Testing 123", TimeSpan.FromSeconds(10));
+        }
+
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
         {
             rtxtConsole.Invoke((MethodInvoker)delegate () 
@@ -47,26 +91,11 @@ namespace CropClient
             });
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private void ShowWarning(string warning, string title)
         {
-            const string CONNECT = "Connect";
-            const string DISCONNECT = "Disconnect";
-
-            if(btnConnect.Text == CONNECT)
-            {
-                client.Connect(IpAddress, Port);
-                btnConnect.Text = DISCONNECT;
-            }
-            else
-            {
-                client.Disconnect();
-                btnConnect.Text = CONNECT;
-            }
+            MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            client.WriteLineAndGetReply("Testing 123", TimeSpan.FromSeconds(10));
-        }
+
     }
 }
