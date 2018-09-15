@@ -10,13 +10,17 @@ namespace SimCropServer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Server started.");
-
+            SimCropServer server = new SimCropServer();
+            server.Start();
             while (true)
-            {
+            {  
                 Console.WriteLine("Press q to quit.");
                 if (Console.ReadKey(true).Key == ConsoleKey.Q)
+                {
+                    server.Stop();
                     break;
+                }
+                    
                 
             }
             

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimCropDemo
+namespace SimCropServer
 {
     public class SimCropServer
     {
@@ -17,8 +17,8 @@ namespace SimCropDemo
 
         public void Start()
         {
+            System.Net.IPAddress ipAddress = System.Net.IPAddress.Parse("127.0.0.1");
             int port = 8910;
-            System.Net.IPAddress ipAddress = new System.Net.IPAddress(long.Parse("127.0.0.1"));
 
             Console.WriteLine("ipAddress: {0}", ipAddress);
             Console.WriteLine("port: {0}", port);
@@ -34,7 +34,12 @@ namespace SimCropDemo
         public void Stop()
         {
             if (server.IsStarted)
+            {
+                Console.WriteLine("Stopping server");
                 server.Stop();
+                Console.WriteLine("Server stopped.");
+            }
+                
         }
 
         public bool IsStarted()
