@@ -9,9 +9,22 @@ namespace CropServer
     public enum ServerCommands
     {
         TestConnection,
+        GetFields,
+        GetInfoSingleField,
+        GetInfoAllFields,
         Plant,
         Harvest
     }
+
+    public enum ServerResponses
+    {
+        TestConnectionSuccess,
+        CommandSuccess,
+        CommandSuccessCropPlanted,
+        CommandSuccessCropHarvested,
+        BadCommand
+    }
+
 
     public class CropServer
     {
