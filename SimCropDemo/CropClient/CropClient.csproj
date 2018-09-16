@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CropClient.cs" />
     <Compile Include="frmClient.cs">
       <SubType>Form</SubType>
     </Compile>

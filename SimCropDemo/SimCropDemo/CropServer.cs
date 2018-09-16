@@ -18,8 +18,7 @@ namespace CropServer
     {
         TestConnectionSuccess,
         CommandSuccess,
-        CommandSuccessCropPlanted,
-        CommandSuccessCropHarvested,
+        CommandFailed,
         BadCommand
     }
 
@@ -74,33 +73,37 @@ namespace CropServer
         private void ServerDataReceived(object sender, SimpleTCP.Message e)
         {
             Console.WriteLine("Received: " + e.MessageString);
-            e.Reply(CommandHandler(e.MessageString.Trim()));
+            var result = CommandHandler(e.MessageString.Trim());
+            e.Reply(result.ToString());
         }
 
-        private string CommandHandler(string command)
+        private ServerResponses CommandHandler(string command)
         {
-            string cmdReply = "";
-            Enum.TryParse(command, out ServerCommands serverCommand);
+            Enum.TryParse(command.TrimEnd('\u0013'), out ServerCommands serverCommand);
             switch (serverCommand)
             {
                 case ServerCommands.TestConnection:
-                    cmdReply = "Connection succeeded!";
-                    break;
+                    return ServerResponses.TestConnectionSuccess;
+
                 case ServerCommands.GetFields:
-                    break;
+                    return ServerResponses.CommandSuccess;
+
                 case ServerCommands.GetInfoSingleField:
-                    break;
+                    return ServerResponses.CommandSuccess;
+
                 case ServerCommands.GetInfoAllFields:
-                    break;
+                    return ServerResponses.CommandSuccess;
+
                 case ServerCommands.Harvest:
-                    break;
+                    return ServerResponses.CommandSuccess;
+
                 case ServerCommands.Plant:
-                    break;
+                    return ServerResponses.CommandSuccess;
+
                 default:
-                    break;
+                    return ServerResponses.BadCommand;
             }
 
-            return cmdReply;
         }
     }
 }

@@ -1,31 +1,25 @@
 ﻿using System;
-using System.Text;
 using System.Windows.Forms;
-using CropServer;
 
 namespace CropClient
 {
     public partial class frmClient : Form
-    {
-        SimpleTCP.SimpleTcpClient client;
-
-        private int Port = 8910;
-        private string IpAddress = "127.0.0.1";
-
-
+    {   
+        private CropClient client;
+        
         public frmClient()
         {
             InitializeComponent();
         }
 
-        #region EventHandlers
-
         private void frmClient_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
-            txtIp.Text = IpAddress;
-            txtPort.Text = Port.ToString();
-            SetupClient();
+           
+            client = new CropClient();
+            txtIp.Text = client.IpAddress;
+            txtPort.Text = client.Port.ToString();
+            client.DataReceived += Client_DataReceived;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -37,8 +31,7 @@ namespace CropClient
             {
                 try
                 {
-                    client.Connect(IpAddress, Port);
-                    client.Write(ServerCommands.TestConnection.ToString());
+                    client.ConnectToServer();
                     btnConnect.Text = DISCONNECT;
                 }
                 catch(Exception ex)
@@ -52,6 +45,7 @@ namespace CropClient
                 {
                     client.Disconnect();
                     btnConnect.Text = CONNECT;
+                    rtxtConsole.Text += "Disconnected.";
                 }
                 catch(Exception ex)
                 {
@@ -76,17 +70,6 @@ namespace CropClient
         private void ShowWarning(string warning, string title)
         {
             MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-
-        #endregion
-
-        private void SetupClient()
-        {
-            client = new SimpleTCP.SimpleTcpClient
-            {
-                StringEncoder = Encoding.UTF8
-            };
-            client.DataReceived += Client_DataReceived;
         }
     }
 }
