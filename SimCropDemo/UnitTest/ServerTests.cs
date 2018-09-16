@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimCropServer;
+using CropServer;
 
 namespace UnitTest
 {
@@ -89,7 +89,7 @@ namespace UnitTest
         [TestMethod]
         public void SimServerTest()
         {
-            var server = new SimCropServer.SimCropServer();
+            var server = new CropServer.CropServer();
 
             Assert.AreEqual(false, server.IsStarted());
 

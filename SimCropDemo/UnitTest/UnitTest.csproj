@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimCropDemo\SimCropServer.csproj">
+    <ProjectReference Include="..\SimCropDemo\CropServer.csproj">
       <Project>{50025fb9-4df3-4091-ac13-3ec3de74bb28}</Project>
-      <Name>SimCropServer</Name>
+      <Name>CropServer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimCropServer
+namespace CropServer
 {
     class Program
     {
         static void Main(string[] args)
         {
-            SimCropServer server = new SimCropServer();
+            CropServer server = new CropServer();
             server.Start();
             while (true)
             {  

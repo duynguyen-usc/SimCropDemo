@@ -4,13 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimCropServer
+namespace CropServer
 {
-    public class SimCropServer
+    public enum ServerCommands
+    {
+        TestConnection,
+        Plant,
+        Harvest
+    }
+
+    public class CropServer
     {
         private SimpleTCP.SimpleTcpServer server;
 
-        public SimCropServer()
+        public CropServer()
         {
             SetupServer();
         }
