@@ -36,6 +36,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grpCommands = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rdoGetInfoSingleField = new System.Windows.Forms.RadioButton();
+            this.rdoPlant = new System.Windows.Forms.RadioButton();
+            this.rdoHarvest = new System.Windows.Forms.RadioButton();
+            this.rdoGetInfoAllFields = new System.Windows.Forms.RadioButton();
             this.grpCommands.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +57,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(368, 62);
+            this.btnSend.Location = new System.Drawing.Point(365, 80);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(92, 32);
             this.btnSend.TabIndex = 1;
@@ -61,9 +67,10 @@
             // 
             // rtxtConsole
             // 
-            this.rtxtConsole.Location = new System.Drawing.Point(12, 151);
+            this.rtxtConsole.Location = new System.Drawing.Point(12, 173);
             this.rtxtConsole.Name = "rtxtConsole";
-            this.rtxtConsole.Size = new System.Drawing.Size(466, 190);
+            this.rtxtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.rtxtConsole.Size = new System.Drawing.Size(466, 251);
             this.rtxtConsole.TabIndex = 2;
             this.rtxtConsole.Text = "";
             // 
@@ -101,19 +108,84 @@
             // 
             // grpCommands
             // 
+            this.grpCommands.Controls.Add(this.rdoGetInfoAllFields);
+            this.grpCommands.Controls.Add(this.rdoHarvest);
+            this.grpCommands.Controls.Add(this.rdoPlant);
+            this.grpCommands.Controls.Add(this.rdoGetInfoSingleField);
+            this.grpCommands.Controls.Add(this.label3);
+            this.grpCommands.Controls.Add(this.comboBox1);
             this.grpCommands.Controls.Add(this.btnSend);
             this.grpCommands.Location = new System.Drawing.Point(12, 45);
             this.grpCommands.Name = "grpCommands";
-            this.grpCommands.Size = new System.Drawing.Size(466, 100);
+            this.grpCommands.Size = new System.Drawing.Size(466, 122);
             this.grpCommands.TabIndex = 7;
             this.grpCommands.TabStop = false;
             this.grpCommands.Text = "Commands";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(336, 41);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(270, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Field Name";
+            // 
+            // rdoGetInfoSingleField
+            // 
+            this.rdoGetInfoSingleField.AutoSize = true;
+            this.rdoGetInfoSingleField.Checked = true;
+            this.rdoGetInfoSingleField.Location = new System.Drawing.Point(26, 42);
+            this.rdoGetInfoSingleField.Name = "rdoGetInfoSingleField";
+            this.rdoGetInfoSingleField.Size = new System.Drawing.Size(163, 17);
+            this.rdoGetInfoSingleField.TabIndex = 4;
+            this.rdoGetInfoSingleField.TabStop = true;
+            this.rdoGetInfoSingleField.Text = "Get information on single field";
+            this.rdoGetInfoSingleField.UseVisualStyleBackColor = true;
+            // 
+            // rdoPlant
+            // 
+            this.rdoPlant.AutoSize = true;
+            this.rdoPlant.Location = new System.Drawing.Point(26, 65);
+            this.rdoPlant.Name = "rdoPlant";
+            this.rdoPlant.Size = new System.Drawing.Size(49, 17);
+            this.rdoPlant.TabIndex = 5;
+            this.rdoPlant.Text = "Plant";
+            this.rdoPlant.UseVisualStyleBackColor = true;
+            // 
+            // rdoHarvest
+            // 
+            this.rdoHarvest.AutoSize = true;
+            this.rdoHarvest.Location = new System.Drawing.Point(26, 88);
+            this.rdoHarvest.Name = "rdoHarvest";
+            this.rdoHarvest.Size = new System.Drawing.Size(62, 17);
+            this.rdoHarvest.TabIndex = 6;
+            this.rdoHarvest.Text = "Harvest";
+            this.rdoHarvest.UseVisualStyleBackColor = true;
+            // 
+            // rdoGetInfoAllFields
+            // 
+            this.rdoGetInfoAllFields.AutoSize = true;
+            this.rdoGetInfoAllFields.Location = new System.Drawing.Point(26, 19);
+            this.rdoGetInfoAllFields.Name = "rdoGetInfoAllFields";
+            this.rdoGetInfoAllFields.Size = new System.Drawing.Size(151, 17);
+            this.rdoGetInfoAllFields.TabIndex = 7;
+            this.rdoGetInfoAllFields.Text = "Get information on all fields";
+            this.rdoGetInfoAllFields.UseVisualStyleBackColor = true;
             // 
             // frmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 353);
+            this.ClientSize = new System.Drawing.Size(490, 436);
             this.Controls.Add(this.grpCommands);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -128,6 +200,7 @@
             this.Text = "Crop Client";
             this.Load += new System.EventHandler(this.frmClient_Load);
             this.grpCommands.ResumeLayout(false);
+            this.grpCommands.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +216,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox grpCommands;
+        private System.Windows.Forms.RadioButton rdoGetInfoAllFields;
+        private System.Windows.Forms.RadioButton rdoHarvest;
+        private System.Windows.Forms.RadioButton rdoPlant;
+        private System.Windows.Forms.RadioButton rdoGetInfoSingleField;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
