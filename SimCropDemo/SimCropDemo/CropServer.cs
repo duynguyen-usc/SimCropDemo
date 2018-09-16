@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace CropServer
 {
@@ -26,10 +27,12 @@ namespace CropServer
     public class CropServer
     {
         private SimpleTCP.SimpleTcpServer server;
+        private List<Field> Fields;
 
         public CropServer()
         {
             SetupServer();
+            CreateFields();
         }
 
         public void Start()
@@ -59,6 +62,16 @@ namespace CropServer
         public bool IsStarted()
         {
             return server.IsStarted;
+        }
+
+        private void CreateFields()
+        {
+            Fields = new List<Field>();
+            const int numFields = 50;
+            for(int i = 1; i <= numFields; i++ )
+            {
+                Fields.Add(new Field("field" + i.ToString());
+            }
         }
 
         private void SetupServer()
