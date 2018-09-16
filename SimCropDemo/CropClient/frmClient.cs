@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using CropServer;
 
 namespace CropClient
 {
@@ -43,6 +38,7 @@ namespace CropClient
                 try
                 {
                     client.Connect(IpAddress, Port);
+                    client.Write(ServerCommands.TestConnection.ToString());
                     btnConnect.Text = DISCONNECT;
                 }
                 catch(Exception ex)
@@ -66,7 +62,7 @@ namespace CropClient
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            Send();
+           
         }
 
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
@@ -91,11 +87,6 @@ namespace CropClient
                 StringEncoder = Encoding.UTF8
             };
             client.DataReceived += Client_DataReceived;
-        }
-
-        private void Send()
-        {
-            client.WriteLineAndGetReply("Testing 123", TimeSpan.FromSeconds(10));
         }
     }
 }
