@@ -36,12 +36,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grpCommands = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.rdoGetInfoSingleField = new System.Windows.Forms.RadioButton();
-            this.rdoPlant = new System.Windows.Forms.RadioButton();
-            this.rdoHarvest = new System.Windows.Forms.RadioButton();
             this.rdoGetInfoAllFields = new System.Windows.Forms.RadioButton();
+            this.rdoHarvest = new System.Windows.Forms.RadioButton();
+            this.rdoPlant = new System.Windows.Forms.RadioButton();
+            this.rdoGetInfoSingleField = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbxFieldName = new System.Windows.Forms.ComboBox();
             this.grpCommands.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,7 +113,7 @@
             this.grpCommands.Controls.Add(this.rdoPlant);
             this.grpCommands.Controls.Add(this.rdoGetInfoSingleField);
             this.grpCommands.Controls.Add(this.label3);
-            this.grpCommands.Controls.Add(this.comboBox1);
+            this.grpCommands.Controls.Add(this.cbxFieldName);
             this.grpCommands.Controls.Add(this.btnSend);
             this.grpCommands.Location = new System.Drawing.Point(12, 45);
             this.grpCommands.Name = "grpCommands";
@@ -122,22 +122,35 @@
             this.grpCommands.TabStop = false;
             this.grpCommands.Text = "Commands";
             // 
-            // comboBox1
+            // rdoGetInfoAllFields
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(336, 41);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this.rdoGetInfoAllFields.AutoSize = true;
+            this.rdoGetInfoAllFields.Location = new System.Drawing.Point(26, 19);
+            this.rdoGetInfoAllFields.Name = "rdoGetInfoAllFields";
+            this.rdoGetInfoAllFields.Size = new System.Drawing.Size(151, 17);
+            this.rdoGetInfoAllFields.TabIndex = 7;
+            this.rdoGetInfoAllFields.Text = "Get information on all fields";
+            this.rdoGetInfoAllFields.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // rdoHarvest
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(270, 44);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Field Name";
+            this.rdoHarvest.AutoSize = true;
+            this.rdoHarvest.Location = new System.Drawing.Point(26, 88);
+            this.rdoHarvest.Name = "rdoHarvest";
+            this.rdoHarvest.Size = new System.Drawing.Size(62, 17);
+            this.rdoHarvest.TabIndex = 6;
+            this.rdoHarvest.Text = "Harvest";
+            this.rdoHarvest.UseVisualStyleBackColor = true;
+            // 
+            // rdoPlant
+            // 
+            this.rdoPlant.AutoSize = true;
+            this.rdoPlant.Location = new System.Drawing.Point(26, 65);
+            this.rdoPlant.Name = "rdoPlant";
+            this.rdoPlant.Size = new System.Drawing.Size(49, 17);
+            this.rdoPlant.TabIndex = 5;
+            this.rdoPlant.Text = "Plant";
+            this.rdoPlant.UseVisualStyleBackColor = true;
             // 
             // rdoGetInfoSingleField
             // 
@@ -151,35 +164,22 @@
             this.rdoGetInfoSingleField.Text = "Get information on single field";
             this.rdoGetInfoSingleField.UseVisualStyleBackColor = true;
             // 
-            // rdoPlant
+            // label3
             // 
-            this.rdoPlant.AutoSize = true;
-            this.rdoPlant.Location = new System.Drawing.Point(26, 65);
-            this.rdoPlant.Name = "rdoPlant";
-            this.rdoPlant.Size = new System.Drawing.Size(49, 17);
-            this.rdoPlant.TabIndex = 5;
-            this.rdoPlant.Text = "Plant";
-            this.rdoPlant.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(270, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Field Name";
             // 
-            // rdoHarvest
+            // cbxFieldName
             // 
-            this.rdoHarvest.AutoSize = true;
-            this.rdoHarvest.Location = new System.Drawing.Point(26, 88);
-            this.rdoHarvest.Name = "rdoHarvest";
-            this.rdoHarvest.Size = new System.Drawing.Size(62, 17);
-            this.rdoHarvest.TabIndex = 6;
-            this.rdoHarvest.Text = "Harvest";
-            this.rdoHarvest.UseVisualStyleBackColor = true;
-            // 
-            // rdoGetInfoAllFields
-            // 
-            this.rdoGetInfoAllFields.AutoSize = true;
-            this.rdoGetInfoAllFields.Location = new System.Drawing.Point(26, 19);
-            this.rdoGetInfoAllFields.Name = "rdoGetInfoAllFields";
-            this.rdoGetInfoAllFields.Size = new System.Drawing.Size(151, 17);
-            this.rdoGetInfoAllFields.TabIndex = 7;
-            this.rdoGetInfoAllFields.Text = "Get information on all fields";
-            this.rdoGetInfoAllFields.UseVisualStyleBackColor = true;
+            this.cbxFieldName.FormattingEnabled = true;
+            this.cbxFieldName.Location = new System.Drawing.Point(336, 41);
+            this.cbxFieldName.Name = "cbxFieldName";
+            this.cbxFieldName.Size = new System.Drawing.Size(121, 21);
+            this.cbxFieldName.TabIndex = 2;
             // 
             // frmClient
             // 
@@ -221,6 +221,6 @@
         private System.Windows.Forms.RadioButton rdoPlant;
         private System.Windows.Forms.RadioButton rdoGetInfoSingleField;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxFieldName;
     }
 }

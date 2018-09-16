@@ -36,7 +36,7 @@ namespace CropClient
             Write(ServerCommands.Plant.ToString() + "," + fieldName);
         }
 
-        public void SendHarvestcommand(string fieldName)
+        public void SendHarvestCommand(string fieldName)
         {
             Write(ServerCommands.Plant.ToString() + "," + fieldName);
         }

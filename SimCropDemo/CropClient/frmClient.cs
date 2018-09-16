@@ -56,7 +56,22 @@ namespace CropClient
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-           
+            if (rdoGetInfoAllFields.Checked)
+            {
+                client.SendGetInfoAllFiends();
+            }
+            else if (rdoGetInfoSingleField.Checked)
+            {
+                client.SendGetInfoSingleFieldCommand(cbxFieldName.SelectedText);
+            }
+            else if (rdoPlant.Checked)
+            {
+                client.SendPlantCommand(cbxFieldName.SelectedText);
+            }
+            else if (rdoHarvest.Checked)
+            {
+                client.SendHarvestCommand(cbxFieldName.SelectedText);
+            }
         }
 
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
