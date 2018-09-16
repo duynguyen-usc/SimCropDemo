@@ -8,6 +8,7 @@ namespace CropServer
 {
     public enum ServerCommands
     {
+        None,
         TestConnection,
         GetFields,
         GetInfoSingleField,
@@ -40,15 +41,12 @@ namespace CropServer
             System.Net.IPAddress ipAddress = System.Net.IPAddress.Parse("127.0.0.1");
             int port = 8910;
 
-            Console.WriteLine("ipAddress: {0}", ipAddress);
-            Console.WriteLine("port: {0}", port);
-            Console.WriteLine("Starting Server...");
-
+            Console.WriteLine("Starting Server on {0}:{1}", ipAddress, port);
             server.Start(ipAddress, port);
             if (server.IsStarted)
                 Console.WriteLine("Server started.");
             else
-                Console.WriteLine("Server start failed");
+                Console.WriteLine("Server start failed.");
         }
 
         public void Stop()
@@ -71,16 +69,43 @@ namespace CropServer
         {
             server = new SimpleTCP.SimpleTcpServer
             {
-                StringEncoder = Encoding.UTF8,
-                Delimiter = 0x3b // semi-colon
+                StringEncoder = Encoding.UTF8
             };
             server.DataReceived += ServerDataReceived;
         }
 
         private void ServerDataReceived(object sender, SimpleTCP.Message e)
         {
-            Console.WriteLine(e.MessageString);
-            e.ReplyLine("Received: " + e.MessageString);
+            string receivedCmd = "Received: " + e.MessageString;
+            Console.WriteLine(receivedCmd);
+            e.ReplyLine(receivedCmd);
+
+            CommandHandler(e.MessageString.Trim());
+        }
+
+        private string CommandHandler(string command)
+        {
+            string cmdReply = "";
+            Enum.TryParse(command, out ServerCommands serverCommand);
+            switch (serverCommand)
+            {
+                case ServerCommands.TestConnection:
+                    break;
+                case ServerCommands.GetFields:
+                    break;
+                case ServerCommands.GetInfoSingleField:
+                    break;
+                case ServerCommands.GetInfoAllFields:
+                    break;
+                case ServerCommands.Harvest:
+                    break;
+                case ServerCommands.Plant:
+                    break;
+                default:
+                    break;
+            }
+
+            return cmdReply;
         }
     }
 }
