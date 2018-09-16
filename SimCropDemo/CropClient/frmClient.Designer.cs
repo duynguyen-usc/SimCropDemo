@@ -69,7 +69,6 @@
             // 
             // txtIp
             // 
-            this.txtIp.Enabled = false;
             this.txtIp.Location = new System.Drawing.Point(84, 19);
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(180, 20);
@@ -77,7 +76,6 @@
             // 
             // txtPort
             // 
-            this.txtPort.Enabled = false;
             this.txtPort.Location = new System.Drawing.Point(302, 19);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(78, 20);

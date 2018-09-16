@@ -17,8 +17,8 @@ namespace CropClient
             this.CenterToScreen();
            
             client = new CropClient();
-            txtIp.Text = client.IpAddress;
-            txtPort.Text = client.Port.ToString();
+            txtIp.Text = "127.0.0.1";
+            txtPort.Text = "8910";
             client.DataReceived += Client_DataReceived;
         }
 
@@ -31,7 +31,7 @@ namespace CropClient
             {
                 try
                 {
-                    client.ConnectToServer();
+                    client.Connect(GetIp(), GetPort());
                     btnConnect.Text = DISCONNECT;
                 }
                 catch(Exception ex)
@@ -67,6 +67,15 @@ namespace CropClient
             });
         }
 
+        private string GetIp()
+        {
+            return System.Net.IPAddress.Parse(txtIp.Text).ToString();
+        }
+        
+        private int GetPort()
+        {
+            return Convert.ToInt32(txtPort.Text);
+        }
         private void ShowWarning(string warning, string title)
         {
             MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
