@@ -76,11 +76,8 @@ namespace CropServer
 
         private void ServerDataReceived(object sender, SimpleTCP.Message e)
         {
-            string receivedCmd = "Received: " + e.MessageString;
-            Console.WriteLine(receivedCmd);
-            e.ReplyLine(receivedCmd);
-
-            CommandHandler(e.MessageString.Trim());
+            Console.WriteLine("Received: " + e.MessageString);
+            e.Reply(CommandHandler(e.MessageString.Trim()));
         }
 
         private string CommandHandler(string command)
@@ -90,6 +87,7 @@ namespace CropServer
             switch (serverCommand)
             {
                 case ServerCommands.TestConnection:
+                    cmdReply = "Connection succeeded!";
                     break;
                 case ServerCommands.GetFields:
                     break;
