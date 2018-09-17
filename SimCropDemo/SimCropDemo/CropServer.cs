@@ -26,8 +26,8 @@ namespace CropServer
 
     public class CropServer
     {
+        public List<Field> Fields;
         private SimpleTCP.SimpleTcpServer server;
-        private List<Field> Fields;
 
         public CropServer()
         {
@@ -70,7 +70,7 @@ namespace CropServer
             const int numFields = 50;
             for(int i = 1; i <= numFields; i++ )
             {
-                Fields.Add(new Field("field" + i.ToString());
+                Fields.Add(new Field("field" + i.ToString()));
             }
         }
 

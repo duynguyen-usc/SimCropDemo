@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CropServer;
+using CropClient;
 
 namespace UnitTest
 {
@@ -87,17 +88,43 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void SimServerTest()
+        public void ServerTest()
         {
-            var server = new CropServer.CropServer();
+            var testServer = new CropServer.CropServer();
+            var testClient = new CropClient.CropClient();
 
-            Assert.AreEqual(false, server.IsStarted());
+            Assert.AreEqual(false, testServer.IsStarted());
+            Assert.AreEqual(50, testServer.Fields.Count);
+            Assert.AreEqual("field1", testServer.Fields[0].Name);
+            Assert.AreEqual("field25", testServer.Fields[024].Name);
+            Assert.AreEqual("field50", testServer.Fields[49].Name);
 
-            server.Start();
-            Assert.AreEqual(true, server.IsStarted());
+            testServer.Start();
+            Assert.AreEqual(true, testServer.IsStarted());
 
-            server.Stop();
-            Assert.AreEqual(false, server.IsStarted());
+            testClient.Connect("127.0.0.1", 8910);
+            testClient.TestConnection();
+            // Verify is connected
+
+            testClient.SendPlantCommand("field1");
+            testClient.SendPlantCommand("field49");
+            // Verify wheat was planted in field 1
+            // Verify corn was planted in filed 25
+            // Verify soybean was planted in field 49
+
+            testClient.SendGetInfoSingleFieldCommand("field1");
+            testClient.SendGetInfoSingleFieldCommand("field49");
+            // Verify wheat was planted in field 1
+            // Verify soybean was planted in field 49
+
+            testClient.SendHarvestCommand("field1");
+            testClient.SendHarvestCommand("field49");
+
+            // Verify there is nothing in field 1 and field 49 now
+
+
+            testServer.Stop();
+            Assert.AreEqual(false, testServer.IsStarted());
         }
 
     }
