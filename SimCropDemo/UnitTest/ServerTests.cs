@@ -119,9 +119,9 @@ namespace UnitTest
 
             testClient.SendHarvestCommand("field1");
             testClient.SendHarvestCommand("field49");
-
             // Verify there is nothing in field 1 and field 49 now
 
+            testClient.Disconnect();
 
             testServer.Stop();
             Assert.AreEqual(false, testServer.IsStarted());
