@@ -61,7 +61,7 @@
       <Project>{ca92eba8-a06f-4629-88e8-4a8bd0f48c22}</Project>
       <Name>CropClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimCropDemo\CropServer.csproj">
+    <ProjectReference Include="..\CropServer\CropServer.csproj">
       <Project>{50025fb9-4df3-4091-ac13-3ec3de74bb28}</Project>
       <Name>CropServer</Name>
     </ProjectReference>
