@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{50025FB9-4DF3-4091-AC13-3EC3DE74BB28}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SimCropDemo</RootNamespace>
-    <AssemblyName>SimCropDemo</AssemblyName>
+    <RootNamespace>CropServer</RootNamespace>
+    <AssemblyName>CropServer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
