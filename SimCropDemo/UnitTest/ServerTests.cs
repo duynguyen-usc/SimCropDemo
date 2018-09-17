@@ -103,36 +103,37 @@ namespace UnitTest
             Assert.AreEqual(true, testServer.IsStarted());
 
             testClient.Connect("127.0.0.1", 8910);
-            //testClient.TestConnection();
-            //System.Threading.Thread.Sleep(5000);
-            //Assert.AreEqual(ServerCommands.TestConnection, testServer.GetLastCommandReceived());
+            // Verify server connections is 1
 
             testClient.SendPlantCommand("field1");
-            
+
+            // Verify wheat was planted in field 1
+            testClient.SendGetInfoSingleFieldCommand("field1");
+
+            testClient.SendPlantCommand("field25");
+            // Verify corn was planted in filed 25
+            testClient.SendGetInfoSingleFieldCommand("field25");
 
             testClient.SendPlantCommand("field49");
-            
-
-            // Verify wheat was planted in field 1
-            // Verify corn was planted in filed 25
             // Verify soybean was planted in field 49
+            testClient.SendGetInfoSingleFieldCommand("field149");
 
-            testClient.SendGetInfoSingleFieldCommand("field1");
-            
 
-            testClient.SendGetInfoSingleFieldCommand("field49");
-            
-            // Verify wheat was planted in field 1
-            // Verify soybean was planted in field 49
 
             testClient.SendHarvestCommand("field1");
-            
+            // Verify there is nothing in field 1
+            testClient.SendGetInfoSingleFieldCommand("field1");
+
+            testClient.SendHarvestCommand("field25");
+            // Verify there is nothing in field 25
+            testClient.SendGetInfoSingleFieldCommand("field25");
 
             testClient.SendHarvestCommand("field49");
-            
-            // Verify there is nothing in field 1 and field 49 now
+            // Verify there is nothing in field 49
+            testClient.SendGetInfoSingleFieldCommand("field25");
 
             testClient.Disconnect();
+            // Verify server connections is 0
 
             testServer.Stop();
             Assert.AreEqual(false, testServer.IsStarted());
