@@ -58,19 +58,19 @@ namespace CropClient
         {
             if (rdoGetInfoAllFields.Checked)
             {
-                client.SendGetInfoAllFiends();
+                //client.SendGetInfoAllFiends();
             }
             else if (rdoGetInfoSingleField.Checked)
             {
-                client.SendGetInfoSingleFieldCommand(cbxFieldName.SelectedText);
+                //client.SendGetInfoSingleFieldCommand(cbxFieldName.SelectedText);
             }
             else if (rdoPlant.Checked)
             {
-                client.SendPlantCommand(cbxFieldName.SelectedText);
+                //client.SendPlantCommand(cbxFieldName.SelectedText);
             }
             else if (rdoHarvest.Checked)
             {
-                client.SendHarvestCommand(cbxFieldName.SelectedText);
+                //client.SendHarvestCommand(cbxFieldName.SelectedText);
             }
         }
 

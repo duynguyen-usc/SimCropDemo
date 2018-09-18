@@ -13,6 +13,11 @@ namespace CropServer
 
         public Field () { }
 
+        public Field(string name)
+        {
+            Name = name;
+        }
+
         public void Plant(Crop crop)
         {
             Crop = crop;
