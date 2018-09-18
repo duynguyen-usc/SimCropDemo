@@ -4,26 +4,6 @@ using System.Collections.Generic;
 
 namespace CropServer
 {
-    public enum ServerCommands
-    {
-        None,
-        TestConnection,
-        GetFields,
-        GetInfoSingleField,
-        GetInfoAllFields,
-        Plant,
-        Harvest
-    }
-
-    public enum ServerResponses
-    {
-        TestConnectionSuccess,
-        CommandSuccess,
-        CommandFailed,
-        BadCommand
-    }
-
-
     public class CropServer
     {
         public List<Field> Fields;
@@ -86,35 +66,35 @@ namespace CropServer
         private void ServerDataReceived(object sender, SimpleTCP.Message e)
         {
             Console.WriteLine("Received: " + e.MessageString);
-            var result = CommandHandler(e.MessageString.Trim());
-            e.Reply(result.ToString());
+            var response = CommandHandler(e.MessageString.Trim());
+            e.Reply(response.ToString());
         }
 
-        private ServerResponses CommandHandler(string command)
-        {
+        private CropServerMessage CommandHandler(string command)
+        {   
             Enum.TryParse(command.TrimEnd('\u0013'), out ServerCommands serverCommand);
             switch (serverCommand)
             {
                 case ServerCommands.TestConnection:
-                    return ServerResponses.TestConnectionSuccess;
+                    return new CropServerMessage { Response = ServerResponses.TestConnectionSuccess };
 
-                case ServerCommands.GetFields:
-                    return ServerResponses.CommandSuccess;
+                //case ServerCommands.GetFields:
+                //    return ServerResponses.CommandSuccess;
 
-                case ServerCommands.GetInfoSingleField:
-                    return ServerResponses.CommandSuccess;
+                //case ServerCommands.GetInfoSingleField:
+                //    return ServerResponses.CommandSuccess;
 
-                case ServerCommands.GetInfoAllFields:
-                    return ServerResponses.CommandSuccess;
+                //case ServerCommands.GetInfoAllFields:
+                //    return ServerResponses.CommandSuccess;
 
-                case ServerCommands.Harvest:
-                    return ServerResponses.CommandSuccess;
+                //case ServerCommands.Harvest:
+                //    return ServerResponses.CommandSuccess;
 
-                case ServerCommands.Plant:
-                    return ServerResponses.CommandSuccess;
+                //case ServerCommands.Plant:
+                //    return ServerResponses.CommandSuccess;
 
                 default:
-                    return ServerResponses.BadCommand;
+                    return new CropServerMessage { Response = ServerResponses.BadCommand };
             }
 
         }
