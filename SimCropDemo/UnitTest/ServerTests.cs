@@ -89,24 +89,6 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void ServerStartStopTest()
-        {
-            var server = new CropServer.CropServer();
-
-            Assert.AreEqual(false, server.IsStarted());
-            Assert.AreEqual(50, server.Fields.Count);
-            Assert.AreEqual("field1", server.Fields[0].Name);
-            Assert.AreEqual("field25", server.Fields[24].Name);
-            Assert.AreEqual("field50", server.Fields[49].Name);
-
-            server.Start();
-            Assert.AreEqual(true, server.IsStarted());
-
-            server.Stop();
-            Assert.AreEqual(false, server.IsStarted());
-        }
-
-        [TestMethod]
         public void TestConnectionTest()
         {
             var server = new CropServer.CropServer();
@@ -114,14 +96,16 @@ namespace UnitTest
 
             client.DataReceived += Client_DataReceived;
 
+            Assert.AreEqual(false, server.IsStarted());
             server.Start();
-            client.Connect("127.0.0.1", 8910);
+            Assert.AreEqual(true, server.IsStarted());
 
+            client.Connect("127.0.0.1", 8910);
             client.TestConnection();
             Assert.AreEqual(ServerResponses.TestConnectionSuccess, serverMessage.Response);
 
-            client.Disconnect();
             server.Stop();
+            Assert.AreEqual(false, server.IsStarted());
         }
 
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
