@@ -33,7 +33,7 @@ namespace CropClient
             Send(cmd);
         }
 
-        public void SendPlantCommand(string fieldName, CropType crop)
+        public void SendPlantCommand(Field fieldInfo)
         {
             var cmd = new CropServerCommand(ServerCommands.Plant);
             cmd.Field.Name = fieldName;
@@ -41,7 +41,7 @@ namespace CropClient
             Send(cmd);
         }
 
-        public void SendHarvestCommand(string fieldName)
+        public void SendHarvestCommand(Field fieldInfo)
         {
             var cmd = new CropServerCommand(ServerCommands.Harvest);
             cmd.Field.Name = fieldName;

@@ -128,6 +128,51 @@ namespace UnitTest
             Assert.AreEqual(false, server.IsStarted());
         }
 
+        [TestMethod]
+        public void ServerCommandsTest()
+        {
+            CrpServer.Start();
+            CrpClient.Connect(IPADDRESS, PORT);
+
+            CrpClient.SendGetFieldsCommand();
+            Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+
+            CrpClient.SendGetInfoAllFiends();
+            Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+
+            CrpClient.SendGetInfoSingleFieldCommand(string.Empty);
+            Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+
+            CrpClient.Disconnect();
+            CrpServer.Stop();
+        }
+
+        [TestMethod]
+        public void PlantAndHarvestTest()
+        {
+            var f = new Field("testField");
+
+            CrpServer.Start();
+            CrpClient.Connect(IPADDRESS, PORT);
+
+            CrpClient.SendPlantCommand(f);
+            Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+
+            CrpClient.SendHarvestCommand(f);
+            Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+
+            CrpClient.Disconnect();
+            CrpServer.Stop();
+        }
+
+        [TestMethod]
+        public void GetInfoAllFiendsTest()
+        {
+            CrpServer.Start();
+            CrpClient.Connect(IPADDRESS, PORT);
+            CrpClient.SendGetFieldsCommand();
+            Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+        }
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
         {
             ServerMessage = new CropServerMessage(e.MessageString);
