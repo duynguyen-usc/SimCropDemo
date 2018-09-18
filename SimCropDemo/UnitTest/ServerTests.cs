@@ -12,7 +12,23 @@ namespace UnitTest
         private const string IPADDRESS = "127.0.0.1";
         private const int PORT = 8910;
 
-        CropServerMessage ServerMessage = new CropServerMessage();
+        CropServerMessage ServerMessage;
+        CropServer.CropServer CrpServer;
+        CropClient.CropClient CrpClient;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            ServerMessage = new CropServerMessage();
+            CrpServer = new CropServer.CropServer();
+            CrpClient = new CropClient.CropClient();
+            CrpClient.DataReceived += Client_DataReceived;
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {  
+        }
 
         [TestMethod]
         public void CropTest()
