@@ -13,7 +13,7 @@ namespace CropClient
 
         public void TestConnection()
         {
-            Write(ServerCommands.TestConnection.ToString());
+            WriteLineAndGetReply(ServerCommands.TestConnection.ToString(), TimeSpan.FromMilliseconds(500));
         }
 
         public void SendGetFieldsCommand()
@@ -40,5 +40,6 @@ namespace CropClient
         {
             Write(ServerCommands.Plant.ToString() + "," + fieldName);
         }
+        
     }
 }

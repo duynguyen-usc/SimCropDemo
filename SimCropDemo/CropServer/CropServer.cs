@@ -66,8 +66,7 @@ namespace CropServer
         private void ServerDataReceived(object sender, SimpleTCP.Message e)
         {
             Console.WriteLine("Received: " + e.MessageString);
-            var response = CommandHandler(e.MessageString.Trim());
-            e.Reply(response.ToString());
+            e.Reply(CommandHandler(e.MessageString.Trim()).ToString());
         }
 
         private CropServerMessage CommandHandler(string command)

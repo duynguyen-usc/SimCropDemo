@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CropServer;
-using CropClient;
 
 namespace UnitTest
 {
     [TestClass]
     public class ServerTests
     {
+        CropServerMessage serverMessage = new CropServerMessage();
+
         [TestMethod]
         public void CropTest()
         {
@@ -88,56 +89,44 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void ServerTest()
+        public void ServerStartStopTest()
         {
-            var testServer = new CropServer.CropServer();
-            var testClient = new CropClient.CropClient();
+            var server = new CropServer.CropServer();
 
-            Assert.AreEqual(false, testServer.IsStarted());
-            Assert.AreEqual(50, testServer.Fields.Count);
-            Assert.AreEqual("field1", testServer.Fields[0].Name);
-            Assert.AreEqual("field25", testServer.Fields[024].Name);
-            Assert.AreEqual("field50", testServer.Fields[49].Name);
+            Assert.AreEqual(false, server.IsStarted());
+            Assert.AreEqual(50, server.Fields.Count);
+            Assert.AreEqual("field1", server.Fields[0].Name);
+            Assert.AreEqual("field25", server.Fields[24].Name);
+            Assert.AreEqual("field50", server.Fields[49].Name);
 
-            testServer.Start();
-            Assert.AreEqual(true, testServer.IsStarted());
+            server.Start();
+            Assert.AreEqual(true, server.IsStarted());
 
-            testClient.Connect("127.0.0.1", 8910);
-            // Verify server connections is 1
-
-            testClient.SendPlantCommand("field1");
-
-            // Verify wheat was planted in field 1
-            testClient.SendGetInfoSingleFieldCommand("field1");
-
-            testClient.SendPlantCommand("field25");
-            // Verify corn was planted in filed 25
-            testClient.SendGetInfoSingleFieldCommand("field25");
-
-            testClient.SendPlantCommand("field49");
-            // Verify soybean was planted in field 49
-            testClient.SendGetInfoSingleFieldCommand("field149");
-
-
-
-            testClient.SendHarvestCommand("field1");
-            // Verify there is nothing in field 1
-            testClient.SendGetInfoSingleFieldCommand("field1");
-
-            testClient.SendHarvestCommand("field25");
-            // Verify there is nothing in field 25
-            testClient.SendGetInfoSingleFieldCommand("field25");
-
-            testClient.SendHarvestCommand("field49");
-            // Verify there is nothing in field 49
-            testClient.SendGetInfoSingleFieldCommand("field25");
-
-            testClient.Disconnect();
-            // Verify server connections is 0
-
-            testServer.Stop();
-            Assert.AreEqual(false, testServer.IsStarted());
+            server.Stop();
+            Assert.AreEqual(false, server.IsStarted());
         }
 
+        [TestMethod]
+        public void TestConnectionTest()
+        {
+            var server = new CropServer.CropServer();
+            var client = new CropClient.CropClient();
+
+            client.DataReceived += Client_DataReceived;
+
+            server.Start();
+            client.Connect("127.0.0.1", 8910);
+
+            client.TestConnection();
+            Assert.AreEqual(ServerResponses.TestConnectionSuccess, serverMessage.Response);
+
+            client.Disconnect();
+            server.Stop();
+        }
+
+        private void Client_DataReceived(object sender, SimpleTCP.Message e)
+        {
+            serverMessage = new CropServerMessage(e.MessageString);
+        }
     }
 }

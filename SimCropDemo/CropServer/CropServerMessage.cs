@@ -1,4 +1,6 @@
-﻿namespace CropServer
+﻿using System;
+
+namespace CropServer
 {
     public enum ServerResponses
     {
@@ -16,9 +18,14 @@
 
         public CropServerMessage() { }
 
+        public CropServerMessage(string messageString)
+        {
+            Enum.TryParse(messageString.TrimEnd(';'), out Response);
+        }
+
         public override string ToString()
         {
-            return Response.ToString() + ":" + Message;
+            return Response.ToString() + ";" + Message;
         }
     }
 }
