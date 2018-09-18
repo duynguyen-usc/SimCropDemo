@@ -18,28 +18,34 @@ namespace CropClient
 
         public void SendGetFieldsCommand()
         {
-            var cmd = new CropServerCommand(ServerCommands.GetInfoAllFields);
-
+            Send(new CropServerCommand(ServerCommands.GetFields));
         }
 
         public void SendGetInfoAllFiends()
         {
-            Write(ServerCommands.GetInfoAllFields.ToString());
+            Send(new CropServerCommand(ServerCommands.GetInfoAllFields));
         }
 
         public void SendGetInfoSingleFieldCommand(string fieldName)
         {
-            Write(ServerCommands.TestConnection.ToString() + "," + fieldName);
+            var cmd = new CropServerCommand(ServerCommands.GetInfoSingleField);
+            cmd.Field.Name = fieldName;
+            Send(cmd);
         }
 
-        public void SendPlantCommand(string fieldName)
+        public void SendPlantCommand(string fieldName, CropType crop)
         {
-            Write(ServerCommands.Plant.ToString() + "," + fieldName);
+            var cmd = new CropServerCommand(ServerCommands.Plant);
+            cmd.Field.Name = fieldName;
+            cmd.Field.Crop.CropType = crop;
+            Send(cmd);
         }
 
         public void SendHarvestCommand(string fieldName)
         {
-            Write(ServerCommands.Plant.ToString() + "," + fieldName);
+            var cmd = new CropServerCommand(ServerCommands.Harvest);
+            cmd.Field.Name = fieldName;
+            Send(cmd);
         }
 
         private void Send(CropServerCommand cmd)

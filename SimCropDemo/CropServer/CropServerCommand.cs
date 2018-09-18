@@ -13,7 +13,9 @@
 
     public class CropServerCommand
     {
-        public ServerCommands Command = ServerCommands.None;        
+        public ServerCommands Command = ServerCommands.None;
+        public Field Field = new Field();
+
         public CropServerCommand(ServerCommands cmd)
         {
             Command = cmd;

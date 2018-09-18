@@ -8,14 +8,10 @@ namespace CropServer
 {
     public class Field
     {
-        public string Name;
-        public Crop Crop;
+        public string Name = string.Empty;
+        public Crop Crop = new Crop();
 
-        public Field(string name)
-        {
-            Name = name;
-            Crop = new Crop(CropType.Undefined);
-        }
+        public Field () { }
 
         public void Plant(Crop crop)
         {
