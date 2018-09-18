@@ -6,6 +6,8 @@ namespace CropClient
 {
     public class CropClient: SimpleTCP.SimpleTcpClient
     {
+        private readonly TimeSpan Timeout = TimeSpan.FromMilliseconds(500);
+
         public CropClient()
         {
             this.StringEncoder = Encoding.UTF8;
@@ -13,7 +15,8 @@ namespace CropClient
 
         public void TestConnection()
         {
-            WriteLineAndGetReply(ServerCommands.TestConnection.ToString(), TimeSpan.FromMilliseconds(500));
+            var cmd = new CropServerCommand(ServerCommands.TestConnection);
+            WriteLineAndGetReply(cmd.ToString(), Timeout);
         }
 
         public void SendGetFieldsCommand()

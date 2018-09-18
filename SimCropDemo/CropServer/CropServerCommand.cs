@@ -14,6 +14,14 @@
     public class CropServerCommand
     {
         public ServerCommands Command = ServerCommands.None;        
-        public CropServerCommand() { }
+        public CropServerCommand(ServerCommands cmd)
+        {
+            Command = cmd;
+        }
+
+        public override string ToString()
+        {
+            return Command.ToString();
+        }
     }
 }
