@@ -8,7 +8,11 @@ namespace UnitTest
     [TestClass]
     public class ServerTests
     {
-        CropServerMessage serverMessage = new CropServerMessage();
+
+        private const string IPADDRESS = "127.0.0.1";
+        private const int PORT = 8910;
+
+        CropServerMessage ServerMessage = new CropServerMessage();
 
         [TestMethod]
         public void CropTest()
@@ -100,9 +104,9 @@ namespace UnitTest
             server.Start();
             Assert.AreEqual(true, server.IsStarted());
 
-            client.Connect("127.0.0.1", 8910);
+            client.Connect(IPADDRESS, PORT);
             client.TestConnection();
-            Assert.AreEqual(ServerResponses.TestConnectionSuccess, serverMessage.Response);
+            Assert.AreEqual(ServerResponses.TestConnectionSuccess, ServerMessage.Response);
 
             server.Stop();
             Assert.AreEqual(false, server.IsStarted());
@@ -110,7 +114,7 @@ namespace UnitTest
 
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
         {
-            serverMessage = new CropServerMessage(e.MessageString);
+            ServerMessage = new CropServerMessage(e.MessageString);
         }
     }
 }

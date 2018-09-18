@@ -77,20 +77,20 @@ namespace CropServer
                 case ServerCommands.TestConnection:
                     return new CropServerMessage { Response = ServerResponses.TestConnectionSuccess };
 
-                //case ServerCommands.GetFields:
-                //    return ServerResponses.CommandSuccess;
+                case ServerCommands.GetFields:
+                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
 
-                //case ServerCommands.GetInfoSingleField:
-                //    return ServerResponses.CommandSuccess;
+                case ServerCommands.GetInfoSingleField:
+                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
 
-                //case ServerCommands.GetInfoAllFields:
-                //    return ServerResponses.CommandSuccess;
+                case ServerCommands.GetInfoAllFields:
+                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
 
-                //case ServerCommands.Harvest:
-                //    return ServerResponses.CommandSuccess;
+                case ServerCommands.Harvest:
+                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
 
-                //case ServerCommands.Plant:
-                //    return ServerResponses.CommandSuccess;
+                case ServerCommands.Plant:
+                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
 
                 default:
                     return new CropServerMessage { Response = ServerResponses.BadCommand };
