@@ -6,8 +6,6 @@ namespace CropClient
 {
     public class CropClient: SimpleTCP.SimpleTcpClient
     {
-        private readonly TimeSpan Timeout = TimeSpan.FromMilliseconds(500);
-
         public CropClient()
         {
             this.StringEncoder = Encoding.UTF8;
@@ -15,13 +13,13 @@ namespace CropClient
 
         public void TestConnection()
         {
-            var cmd = new CropServerCommand(ServerCommands.TestConnection);
-            WriteLineAndGetReply(cmd.ToString(), Timeout);
+            Send(new CropServerCommand(ServerCommands.TestConnection));
         }
 
         public void SendGetFieldsCommand()
         {
-            Write(ServerCommands.GetFields.ToString());
+            var cmd = new CropServerCommand(ServerCommands.GetInfoAllFields);
+
         }
 
         public void SendGetInfoAllFiends()
@@ -42,6 +40,11 @@ namespace CropClient
         public void SendHarvestCommand(string fieldName)
         {
             Write(ServerCommands.Plant.ToString() + "," + fieldName);
+        }
+
+        private void Send(CropServerCommand cmd)
+        {
+            WriteLineAndGetReply(cmd.ToString(), TimeSpan.FromMilliseconds(500));
         }
         
     }
