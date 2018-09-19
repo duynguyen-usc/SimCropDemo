@@ -100,7 +100,8 @@ namespace CropServer
                 case ServerCommands.GetInfoSingleField:
                     return new CropServerMessage
                     {
-                        Response = ServerResponses.CommandSuccess
+                        Response = ServerResponses.CommandSuccess,
+                        FieldInfo = Fields.Find(x => x.Name == cropServerCommand.Field.Name);
                     };
 
                 case ServerCommands.GetInfoAllFields:
