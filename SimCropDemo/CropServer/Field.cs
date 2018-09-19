@@ -26,7 +26,7 @@ namespace CropServer
 
         public void Harvest()
         {
-            Crop.CropType = CropType.Undefined;
+            Crop.CropType = CropType.None;
         }
 
     }

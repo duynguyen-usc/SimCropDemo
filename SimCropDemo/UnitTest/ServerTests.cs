@@ -99,7 +99,7 @@ namespace UnitTest
             foreach(var field in fields)
             {
                 field.Harvest();
-                Assert.AreEqual(CropType.Undefined, field.Crop.CropType);
+                Assert.AreEqual(CropType.None, field.Crop.CropType);
                 Assert.AreEqual(0, field.Crop.GetGrowthRate());
                 Assert.AreEqual(0, field.Crop.GetHeight());
             }
@@ -142,16 +142,24 @@ namespace UnitTest
         [TestMethod]
         public void PlantAndHarvestTest()
         {
-            var f = new Field("testField");
+            var f = new Field
+            {
+                Name = "field1",
+                Crop = new Crop(CropType.Soybean)
+            };
 
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
 
             CrpClient.SendPlantCommand(f);
             Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
+            Assert.AreEqual(CropType.Soybean, CrpClient.LastServerMessage.FieldInfo.Crop.CropType);
+            Assert.AreEqual(3, CrpClient.LastServerMessage.FieldInfo.Crop.GetGrowthRate());
 
             CrpClient.SendHarvestCommand(f);
             Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
+            Assert.AreEqual(CropType.None, CrpClient.LastServerMessage.FieldInfo.Crop.CropType);
+            Assert.AreEqual(0, CrpClient.LastServerMessage.FieldInfo.Crop.GetGrowthRate());
 
             CrpClient.Disconnect();
             CrpServer.Stop();

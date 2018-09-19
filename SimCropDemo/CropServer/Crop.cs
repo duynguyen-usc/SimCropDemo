@@ -8,7 +8,7 @@ namespace CropServer
 {
     public enum CropType
     {
-        Undefined,
+        None,
         Wheat,
         Corn,
         Soybean
@@ -17,7 +17,7 @@ namespace CropServer
     public class Crop
     {
         public DateTime DatePlanted = default(DateTime);
-        public CropType CropType = CropType.Undefined;
+        public CropType CropType = CropType.None;
 
         public Crop() { }
 

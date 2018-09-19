@@ -49,6 +49,7 @@ namespace CropClient
         private void CropClient_DataReceived(object sender, SimpleTCP.Message e)
         {
             LastServerMessage = JsonToMessage(e.MessageString.TrimEnd('\u0013'));
+
         }
 
         private void Send(CropServerCommand cmd)
