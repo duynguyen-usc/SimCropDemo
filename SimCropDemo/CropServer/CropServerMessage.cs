@@ -20,16 +20,11 @@ namespace CropServer
 
         public CropServerMessage() { }
 
-        public CropServerMessage(string messageString)
-        {
-            var parsedMsg = messageString.Split(';');
-            Enum.TryParse(parsedMsg[0], out Response);
-        }
-
         public void Clear()
         {
             Response = ServerResponses.None;
-
+            Fields.Clear();
+            FieldInfo.Harvest();
         }
     }
 }
