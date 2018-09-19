@@ -107,14 +107,15 @@ namespace CropServer
                 case ServerCommands.Harvest:
                     return new CropServerMessage
                     {
-                        Response = ServerResponses.CommandSuccess
+                        Response = ServerResponses.CommandSuccess,
+                        FieldInfo = HandleHarvestCommand(cropServerCommand.Field)
                     };
 
                 case ServerCommands.Plant:
                     return new CropServerMessage
                     {
                         Response = ServerResponses.CommandSuccess,
-                        FieldInfo = new Field()
+                        FieldInfo = HandlePlantCommand(cropServerCommand.Field)
                     };
 
                 default:
