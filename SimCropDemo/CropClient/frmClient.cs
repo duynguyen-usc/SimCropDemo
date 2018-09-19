@@ -87,17 +87,20 @@ namespace CropClient
             }
             else if (rdoPlant.Checked)
             {
-                var f = new Field
+                CropType ct = new CropType();
+                Enum.TryParse<CropType>(cbxCropType.SelectedText, out ct);
+
+                var fieldInfo = new Field
                 {
-                    Name = cbxFieldName.SelectedText
-                    
+                    Name = cbxFieldName.SelectedText,
+                    Crop = new Crop(ct)
                 };
-                client.SendPlantCommand(f);
+                client.SendPlantCommand(fieldInfo);
             }
             else if (rdoHarvest.Checked)
             {
-                var f = new Field(cbxFieldName.SelectedText);
-                client.SendHarvestCommand(f);
+                var fieldInfo = new Field(cbxFieldName.SelectedText);
+                client.SendHarvestCommand(fieldInfo);
             }
         }
 
@@ -119,16 +122,6 @@ namespace CropClient
         private void rdoGetInfoAllFields_CheckedChanged(object sender, EventArgs e)
         {
             EnableDisableDropDowns();
-        }
-
-        private string GetIp()
-        {
-            return System.Net.IPAddress.Parse(txtIp.Text).ToString();
-        }
-        
-        private int GetPort()
-        {
-            return Convert.ToInt32(txtPort.Text);
         }
 
         private void ShowWarning(string warning, string title)
@@ -155,6 +148,14 @@ namespace CropClient
             }
         }
 
-        
+        private string GetIp()
+        {
+            return System.Net.IPAddress.Parse(txtIp.Text).ToString();
+        }
+
+        private int GetPort()
+        {
+            return Convert.ToInt32(txtPort.Text);
+        }
     }
 }
