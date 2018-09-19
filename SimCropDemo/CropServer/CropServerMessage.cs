@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CropServer
 {
@@ -14,7 +15,8 @@ namespace CropServer
     public class CropServerMessage
     {
         public ServerResponses Response = ServerResponses.None;
-        public string Message = string.Empty;
+        public Field FieldInfo;
+        public List<Field> Fields;
 
         public CropServerMessage() { }
 
@@ -26,7 +28,7 @@ namespace CropServer
 
         public override string ToString()
         {
-            return Response.ToString() + ";" + Message;
+            return Response.ToString();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace CropClient
 
         private void Send(CropServerCommand cmd)
         {
-            WriteLineAndGetReply(cmd.ToString(), TimeSpan.FromMilliseconds(500));
+            WriteLineAndGetReply(cmd.ToJson(), TimeSpan.FromMilliseconds(500));
         }
         
     }

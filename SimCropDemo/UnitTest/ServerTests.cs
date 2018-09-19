@@ -166,13 +166,23 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void GetInfoAllFiendsTest()
+        public void GetInfoAllFieldsTest()
         {
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
             CrpClient.SendGetFieldsCommand();
             Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
         }
+
+        [TestMethod]
+        public void GetInfoSingleFieldTest()
+        {
+            CrpServer.Start();
+            CrpClient.Connect(IPADDRESS, PORT);
+            CrpClient.SendGetInfoSingleFieldCommand("someFieldName");
+            Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+        }
+
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
         {
             ServerMessage = new CropServerMessage(e.MessageString);

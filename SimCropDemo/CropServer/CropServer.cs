@@ -63,16 +63,26 @@ namespace CropServer
             server.DataReceived += ServerDataReceived;
         }
 
-        private void ServerDataReceived(object sender, SimpleTCP.Message e)
+        private string ConvertToJson(CropServerMessage cropServerMessage)
         {
-            Console.WriteLine("Received: " + e.MessageString);
-            e.Reply(CommandHandler(e.MessageString.Trim()).ToString());
+            return Newtonsoft.Json.JsonConvert.SerializeObject(cropServerMessage);
         }
 
-        private CropServerMessage CommandHandler(string command)
+        private CropServerCommand JsonToCommand(string json)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<CropServerCommand>(json);
+        }
+
+        private void ServerDataReceived(object sender, SimpleTCP.Message e)
+        {
+            var cmd = JsonToCommand(e.MessageString.TrimEnd('\u0013'));
+            var responsMsg = CommandHandler(cmd);
+            e.Reply(ConvertToJson(responsMsg));
+        }
+
+        private CropServerMessage CommandHandler(CropServerCommand cropServerCommand)
         {   
-            Enum.TryParse(command.TrimEnd('\u0013'), out ServerCommands serverCommand);
-            switch (serverCommand)
+            switch (cropServerCommand.Command)
             {
                 case ServerCommands.TestConnection:
                     return new CropServerMessage { Response = ServerResponses.TestConnectionSuccess };
