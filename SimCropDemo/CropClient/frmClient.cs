@@ -21,6 +21,11 @@ namespace CropClient
             client = new CropClient();
             txtIp.Text = "127.0.0.1";
             txtPort.Text = "8910";
+
+            foreach (CropType ct in (CropType[])Enum.GetValues((typeof(CropType))))
+            {
+                cbxCropType.Items.Add(ct);
+            }
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -69,19 +74,31 @@ namespace CropClient
         {
             if (rdoGetInfoAllFields.Checked)
             {
-                //client.SendGetInfoAllFiends();
+                client.SendGetInfoAllFieldsCommand();
+                client.LastServerMessage.Fields.ForEach(x => 
+                {
+                    rtxtConsole.Text += x.ToString();
+                });
+                ScrollToConsoleEnd();
+
             }
             else if (rdoGetInfoSingleField.Checked)
             {
-                //client.SendGetInfoSingleFieldCommand(cbxFieldName.SelectedText);
+                client.SendGetInfoSingleFieldCommand(cbxFieldName.SelectedText);
             }
             else if (rdoPlant.Checked)
             {
-                //client.SendPlantCommand(cbxFieldName.SelectedText);
+                var f = new Field
+                {
+                    Name = cbxFieldName.SelectedText
+                    
+                };
+                client.SendPlantCommand(f);
             }
             else if (rdoHarvest.Checked)
             {
-                //client.SendHarvestCommand(cbxFieldName.SelectedText);
+                var f = new Field(cbxFieldName.SelectedText);
+                client.SendHarvestCommand(f);
             }
         }
 
@@ -99,9 +116,10 @@ namespace CropClient
             MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        private void SetupClient()
+        private void ScrollToConsoleEnd()
         {
-
+            rtxtConsole.SelectionStart = rtxtConsole.SelectionLength;
+            rtxtConsole.ScrollToCaret();
         }
     }
 }

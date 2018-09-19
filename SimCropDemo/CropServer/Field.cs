@@ -29,5 +29,10 @@ namespace CropServer
             Crop.CropType = CropType.None;
         }
 
+        public override string ToString()
+        {
+            return string.Format("Name: {0} | Crop: {1} | Crop Height: {1} cm\n", Name, Crop.CropType.ToString(), Crop.GetHeight());
+        }
+
     }
 }

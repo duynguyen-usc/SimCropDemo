@@ -42,6 +42,8 @@
             this.rdoGetInfoSingleField = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.cbxFieldName = new System.Windows.Forms.ComboBox();
+            this.cbxCropType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.grpCommands.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(365, 80);
+            this.btnSend.Location = new System.Drawing.Point(368, 110);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(92, 32);
             this.btnSend.TabIndex = 1;
@@ -67,10 +69,10 @@
             // 
             // rtxtConsole
             // 
-            this.rtxtConsole.Location = new System.Drawing.Point(12, 173);
+            this.rtxtConsole.Location = new System.Drawing.Point(12, 202);
             this.rtxtConsole.Name = "rtxtConsole";
             this.rtxtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtxtConsole.Size = new System.Drawing.Size(466, 251);
+            this.rtxtConsole.Size = new System.Drawing.Size(466, 222);
             this.rtxtConsole.TabIndex = 2;
             this.rtxtConsole.Text = "";
             // 
@@ -108,6 +110,8 @@
             // 
             // grpCommands
             // 
+            this.grpCommands.Controls.Add(this.label4);
+            this.grpCommands.Controls.Add(this.cbxCropType);
             this.grpCommands.Controls.Add(this.rdoGetInfoAllFields);
             this.grpCommands.Controls.Add(this.rdoHarvest);
             this.grpCommands.Controls.Add(this.rdoPlant);
@@ -117,7 +121,7 @@
             this.grpCommands.Controls.Add(this.btnSend);
             this.grpCommands.Location = new System.Drawing.Point(12, 45);
             this.grpCommands.Name = "grpCommands";
-            this.grpCommands.Size = new System.Drawing.Size(466, 122);
+            this.grpCommands.Size = new System.Drawing.Size(466, 151);
             this.grpCommands.TabIndex = 7;
             this.grpCommands.TabStop = false;
             this.grpCommands.Text = "Commands";
@@ -135,7 +139,7 @@
             // rdoHarvest
             // 
             this.rdoHarvest.AutoSize = true;
-            this.rdoHarvest.Location = new System.Drawing.Point(26, 88);
+            this.rdoHarvest.Location = new System.Drawing.Point(26, 65);
             this.rdoHarvest.Name = "rdoHarvest";
             this.rdoHarvest.Size = new System.Drawing.Size(62, 17);
             this.rdoHarvest.TabIndex = 6;
@@ -145,7 +149,7 @@
             // rdoPlant
             // 
             this.rdoPlant.AutoSize = true;
-            this.rdoPlant.Location = new System.Drawing.Point(26, 65);
+            this.rdoPlant.Location = new System.Drawing.Point(26, 88);
             this.rdoPlant.Name = "rdoPlant";
             this.rdoPlant.Size = new System.Drawing.Size(49, 17);
             this.rdoPlant.TabIndex = 5;
@@ -167,7 +171,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(270, 44);
+            this.label3.Location = new System.Drawing.Point(277, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 3;
@@ -176,16 +180,33 @@
             // cbxFieldName
             // 
             this.cbxFieldName.FormattingEnabled = true;
-            this.cbxFieldName.Location = new System.Drawing.Point(336, 41);
+            this.cbxFieldName.Location = new System.Drawing.Point(339, 41);
             this.cbxFieldName.Name = "cbxFieldName";
             this.cbxFieldName.Size = new System.Drawing.Size(121, 21);
             this.cbxFieldName.TabIndex = 2;
+            // 
+            // cbxCropType
+            // 
+            this.cbxCropType.FormattingEnabled = true;
+            this.cbxCropType.Location = new System.Drawing.Point(339, 68);
+            this.cbxCropType.Name = "cbxCropType";
+            this.cbxCropType.Size = new System.Drawing.Size(121, 21);
+            this.cbxCropType.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(281, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Crop Type";
             // 
             // frmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 436);
+            this.ClientSize = new System.Drawing.Size(494, 436);
             this.Controls.Add(this.grpCommands);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -222,5 +243,7 @@
         private System.Windows.Forms.RadioButton rdoGetInfoSingleField;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbxFieldName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbxCropType;
     }
 }
