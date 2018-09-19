@@ -51,16 +51,6 @@ namespace CropClient
             Send(cmd);
         }
 
-        private string ConvertToJson(CropServerCommand cropServerCommand)
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(cropServerCommand);
-        }
-
-        private CropServerMessage JsonToMessage(string json)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<CropServerMessage>(json);
-        }
-
         private void CropClient_DataReceived(object sender, SimpleTCP.Message e)
         {
             LastServerMessage = JsonToMessage(e.MessageString.TrimEnd('\u0013'));
@@ -70,6 +60,15 @@ namespace CropClient
         {
             WriteLineAndGetReply(ConvertToJson(cmd), TimeSpan.FromMilliseconds(500));
         }
-        
+
+        private string ConvertToJson(CropServerCommand cropServerCommand)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(cropServerCommand);
+        }
+
+        private CropServerMessage JsonToMessage(string json)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<CropServerMessage>(json);
+        }
     }
 }

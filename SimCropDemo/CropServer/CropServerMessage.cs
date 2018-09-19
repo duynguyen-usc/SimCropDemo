@@ -25,5 +25,11 @@ namespace CropServer
             var parsedMsg = messageString.Split(';');
             Enum.TryParse(parsedMsg[0], out Response);
         }
+
+        public void Clear()
+        {
+            Response = ServerResponses.None;
+
+        }
     }
 }

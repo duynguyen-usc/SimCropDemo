@@ -126,14 +126,14 @@ namespace UnitTest
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
 
-            //CrpClient.SendGetFieldsCommand();
-            //Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+            CrpClient.SendGetFieldsCommand();
+            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
 
-            //CrpClient.SendGetInfoAllFiends();
-            //Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+            CrpClient.SendGetInfoAllFiends();
+            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
 
-            //CrpClient.SendGetInfoSingleFieldCommand(string.Empty);
-            //Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+            CrpClient.SendGetInfoSingleFieldCommand(string.Empty);
+            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
 
             CrpClient.Disconnect();
             CrpServer.Stop();
@@ -147,11 +147,11 @@ namespace UnitTest
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
 
-            //CrpClient.SendPlantCommand(f);
-            //Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+            CrpClient.SendPlantCommand(f);
+            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
 
-            //CrpClient.SendHarvestCommand(f);
-            //Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+            CrpClient.SendHarvestCommand(f);
+            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
 
             CrpClient.Disconnect();
             CrpServer.Stop();
@@ -163,7 +163,11 @@ namespace UnitTest
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
             CrpClient.SendGetFieldsCommand();
-            //Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
+
+
+            CrpClient.Disconnect();
+            CrpServer.Stop();
         }
 
         [TestMethod]
@@ -172,7 +176,10 @@ namespace UnitTest
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
             CrpClient.SendGetInfoSingleFieldCommand("someFieldName");
-            //Assert.AreEqual(ServerResponses.CommandSuccess, ServerMessage.Response);
+            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
+
+            CrpClient.Disconnect();
+            CrpServer.Stop();
         }
       
     }
