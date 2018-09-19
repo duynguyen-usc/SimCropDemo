@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using CropServer;
 
 namespace CropClient
 {
@@ -19,7 +21,6 @@ namespace CropClient
             client = new CropClient();
             txtIp.Text = "127.0.0.1";
             txtPort.Text = "8910";
-            client.DataReceived += Client_DataReceived;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -32,7 +33,16 @@ namespace CropClient
                 try
                 {
                     client.Connect(GetIp(), GetPort());
+                    client.SendGetInfoAllFieldsCommand();
+
+                    cbxFieldName.Items.Clear();
+                    client.LastServerMessage.Fields.ForEach(x => 
+                    {
+                        cbxFieldName.Items.Add(x.Name);
+                    });
+                    cbxFieldName.SelectedIndex = 0;
                     btnConnect.Text = DISCONNECT;
+                    rtxtConsole.Text += "Connected.\n";
                 }
                 catch(Exception ex)
                 {
@@ -45,7 +55,8 @@ namespace CropClient
                 {
                     client.Disconnect();
                     btnConnect.Text = CONNECT;
-                    rtxtConsole.Text += "Disconnected.";
+                    cbxFieldName.Items.Clear();
+                    rtxtConsole.Text += "Disconnected.\n";
                 }
                 catch(Exception ex)
                 {
@@ -74,14 +85,6 @@ namespace CropClient
             }
         }
 
-        private void Client_DataReceived(object sender, SimpleTCP.Message e)
-        {
-            rtxtConsole.Invoke((MethodInvoker)delegate ()
-            {
-                rtxtConsole.Text += e.MessageString + "\n";
-            });
-        }
-
         private string GetIp()
         {
             return System.Net.IPAddress.Parse(txtIp.Text).ToString();
@@ -94,6 +97,11 @@ namespace CropClient
         private void ShowWarning(string warning, string title)
         {
             MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void SetupClient()
+        {
+
         }
     }
 }
