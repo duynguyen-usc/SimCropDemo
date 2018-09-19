@@ -6,9 +6,12 @@ namespace CropClient
 {
     public class CropClient: SimpleTCP.SimpleTcpClient
     {
-        public CropClient()
+        CropServerMessage LastServerMessage = new CropServerMessage();
+
+        public CropClient() : base()
         {
             this.StringEncoder = Encoding.UTF8;
+            base.DataReceived += CropClient_DataReceived;
         }
 
         public void TestConnection()
@@ -48,9 +51,24 @@ namespace CropClient
             Send(cmd);
         }
 
+        private string ConvertToJson(CropServerCommand cropServerCommand)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(cropServerCommand);
+        }
+
+        private CropServerMessage JsonToMessage(string json)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<CropServerMessage>(json);
+        }
+
+        private void CropClient_DataReceived(object sender, SimpleTCP.Message e)
+        {
+            LastServerMessage = JsonToMessage(e.MessageString.TrimEnd('\u0013'));
+        }
+
         private void Send(CropServerCommand cmd)
         {
-            WriteLineAndGetReply(cmd.ToJson(), TimeSpan.FromMilliseconds(500));
+            WriteLineAndGetReply(ConvertToJson(cmd), TimeSpan.FromMilliseconds(500));
         }
         
     }
