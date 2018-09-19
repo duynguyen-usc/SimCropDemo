@@ -84,6 +84,7 @@ namespace CropClient
             else if (rdoGetInfoSingleField.Checked)
             {
                 client.SendGetInfoSingleFieldCommand(cbxFieldName.SelectedText);
+                rtxtConsole.Text += client.LastServerMessage.FieldInfo.ToString();
             }
             else if (rdoPlant.Checked)
             {
