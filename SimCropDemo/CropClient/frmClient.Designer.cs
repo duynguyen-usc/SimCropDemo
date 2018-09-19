@@ -140,7 +140,7 @@
             // rdoHarvest
             // 
             this.rdoHarvest.AutoSize = true;
-            this.rdoHarvest.Location = new System.Drawing.Point(26, 65);
+            this.rdoHarvest.Location = new System.Drawing.Point(26, 88);
             this.rdoHarvest.Name = "rdoHarvest";
             this.rdoHarvest.Size = new System.Drawing.Size(62, 17);
             this.rdoHarvest.TabIndex = 6;
@@ -151,7 +151,7 @@
             // rdoPlant
             // 
             this.rdoPlant.AutoSize = true;
-            this.rdoPlant.Location = new System.Drawing.Point(26, 88);
+            this.rdoPlant.Location = new System.Drawing.Point(26, 65);
             this.rdoPlant.Name = "rdoPlant";
             this.rdoPlant.Size = new System.Drawing.Size(49, 17);
             this.rdoPlant.TabIndex = 5;

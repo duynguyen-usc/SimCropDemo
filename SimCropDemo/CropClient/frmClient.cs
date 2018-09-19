@@ -83,13 +83,13 @@ namespace CropClient
             }
             else if (rdoGetInfoSingleField.Checked)
             {
-                client.SendGetInfoSingleFieldCommand(cbxFieldName.SelectedText);
+                client.SendGetInfoSingleFieldCommand(cbxFieldName.Text);
                 rtxtConsole.Text += client.LastServerMessage.FieldInfo.ToString();
             }
             else if (rdoPlant.Checked)
             {
                 CropType ct = new CropType();
-                Enum.TryParse<CropType>(cbxCropType.SelectedText, out ct);
+                Enum.TryParse<CropType>(cbxCropType.Text, out ct);
 
                 var fieldInfo = new Field
                 {
@@ -100,7 +100,7 @@ namespace CropClient
             }
             else if (rdoHarvest.Checked)
             {
-                var fieldInfo = new Field(cbxFieldName.SelectedText);
+                var fieldInfo = new Field(cbxFieldName.Text);
                 client.SendHarvestCommand(fieldInfo);
             }
         }
