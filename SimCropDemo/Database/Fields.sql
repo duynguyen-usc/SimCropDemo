@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Fields]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-    [Name] NCHAR(10) NULL, 
-    [CropType] NCHAR(10) NULL, 
+    [Name] NVARCHAR(50) NULL, 
+    [CropType] NVARCHAR(50) NULL, 
     [DatePlanted] DATETIME NULL
 )
