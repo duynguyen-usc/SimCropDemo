@@ -6,7 +6,7 @@ namespace CropClient
 {
     public class CropClient: SimpleTCP.SimpleTcpClient
     {
-        CropServerMessage LastServerMessage = new CropServerMessage();
+        public CropServerMessage LastServerMessage = new CropServerMessage();
 
         public CropClient() : base()
         {
