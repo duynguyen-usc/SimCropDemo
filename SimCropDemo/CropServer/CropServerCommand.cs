@@ -4,9 +4,8 @@
     {
         None,
         TestConnection,
-        GetFields,
-        GetInfoSingleField,
         GetInfoAllFields,
+        GetInfoSingleField,
         Plant,
         Harvest
     }

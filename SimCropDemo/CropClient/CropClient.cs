@@ -19,12 +19,7 @@ namespace CropClient
             Send(new CropServerCommand(ServerCommands.TestConnection));
         }
 
-        public void SendGetFieldsCommand()
-        {
-            Send(new CropServerCommand(ServerCommands.GetFields));
-        }
-
-        public void SendGetInfoAllFiends()
+        public void SendGetInfoAllFieldsCommand()
         {
             Send(new CropServerCommand(ServerCommands.GetInfoAllFields));
         }

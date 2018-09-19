@@ -126,7 +126,7 @@ namespace UnitTest
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
 
-            CrpClient.SendGetFieldsCommand();
+            CrpClient.SendGetInfoAllFieldsCommand();
             Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
             Assert.AreEqual(50, CrpClient.LastServerMessage.Fields.Count);
 
@@ -152,19 +152,6 @@ namespace UnitTest
 
             CrpClient.SendHarvestCommand(f);
             Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
-
-            CrpClient.Disconnect();
-            CrpServer.Stop();
-        }
-
-        [TestMethod]
-        public void GetInfoAllFieldsTest()
-        {
-            CrpServer.Start();
-            CrpClient.Connect(IPADDRESS, PORT);
-            CrpClient.SendGetFieldsCommand();
-            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
-
 
             CrpClient.Disconnect();
             CrpServer.Stop();

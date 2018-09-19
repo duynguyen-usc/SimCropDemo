@@ -90,7 +90,7 @@ namespace CropServer
                         Response = ServerResponses.TestConnectionSuccess
                     };
 
-                case ServerCommands.GetFields:
+                case ServerCommands.GetInfoAllFields:
                     return new CropServerMessage
                     {
                         Response = ServerResponses.CommandSuccess,
@@ -102,12 +102,6 @@ namespace CropServer
                     {
                         Response = ServerResponses.CommandSuccess,
                         FieldInfo = Fields.Find(x => x.Name == cropServerCommand.Field.Name)
-                    };
-
-                case ServerCommands.GetInfoAllFields:
-                    return new CropServerMessage
-                    {
-                        Response = ServerResponses.CommandSuccess
                     };
 
                 case ServerCommands.Harvest:
