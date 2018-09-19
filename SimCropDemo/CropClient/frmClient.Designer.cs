@@ -36,14 +36,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grpCommands = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbxCropType = new System.Windows.Forms.ComboBox();
             this.rdoGetInfoAllFields = new System.Windows.Forms.RadioButton();
             this.rdoHarvest = new System.Windows.Forms.RadioButton();
             this.rdoPlant = new System.Windows.Forms.RadioButton();
             this.rdoGetInfoSingleField = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.cbxFieldName = new System.Windows.Forms.ComboBox();
-            this.cbxCropType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.grpCommands.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +79,7 @@
             // 
             // txtIp
             // 
+            this.txtIp.Enabled = false;
             this.txtIp.Location = new System.Drawing.Point(84, 19);
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(180, 20);
@@ -85,6 +87,7 @@
             // 
             // txtPort
             // 
+            this.txtPort.Enabled = false;
             this.txtPort.Location = new System.Drawing.Point(302, 19);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(78, 20);
@@ -110,6 +113,7 @@
             // 
             // grpCommands
             // 
+            this.grpCommands.Controls.Add(this.btnClear);
             this.grpCommands.Controls.Add(this.label4);
             this.grpCommands.Controls.Add(this.cbxCropType);
             this.grpCommands.Controls.Add(this.rdoGetInfoAllFields);
@@ -125,6 +129,23 @@
             this.grpCommands.TabIndex = 7;
             this.grpCommands.TabStop = false;
             this.grpCommands.Text = "Commands";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(281, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Crop Type";
+            // 
+            // cbxCropType
+            // 
+            this.cbxCropType.FormattingEnabled = true;
+            this.cbxCropType.Location = new System.Drawing.Point(339, 68);
+            this.cbxCropType.Name = "cbxCropType";
+            this.cbxCropType.Size = new System.Drawing.Size(121, 21);
+            this.cbxCropType.TabIndex = 8;
             // 
             // rdoGetInfoAllFields
             // 
@@ -189,22 +210,15 @@
             this.cbxFieldName.Size = new System.Drawing.Size(121, 21);
             this.cbxFieldName.TabIndex = 2;
             // 
-            // cbxCropType
+            // btnClear
             // 
-            this.cbxCropType.FormattingEnabled = true;
-            this.cbxCropType.Location = new System.Drawing.Point(339, 68);
-            this.cbxCropType.Name = "cbxCropType";
-            this.cbxCropType.Size = new System.Drawing.Size(121, 21);
-            this.cbxCropType.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(281, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Crop Type";
+            this.btnClear.Location = new System.Drawing.Point(270, 110);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(92, 32);
+            this.btnClear.TabIndex = 10;
+            this.btnClear.Text = "Clear Console";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmClient
             // 
@@ -249,5 +263,6 @@
         private System.Windows.Forms.ComboBox cbxFieldName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbxCropType;
+        private System.Windows.Forms.Button btnClear;
     }
 }

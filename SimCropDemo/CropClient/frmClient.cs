@@ -161,5 +161,10 @@ namespace CropClient
         {
             return Convert.ToInt32(txtPort.Text);
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            rtxtConsole.Text = "";
+        }
     }
 }
