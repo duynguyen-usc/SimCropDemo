@@ -20,10 +20,5 @@
         {
             Command = cmd;
         }
-
-        public override string ToString()
-        {
-            return Command.ToString();
-        }
     }
 }

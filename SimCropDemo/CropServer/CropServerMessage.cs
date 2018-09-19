@@ -25,10 +25,5 @@ namespace CropServer
             var parsedMsg = messageString.Split(';');
             Enum.TryParse(parsedMsg[0], out Response);
         }
-
-        public override string ToString()
-        {
-            return Response.ToString();
-        }
     }
 }
