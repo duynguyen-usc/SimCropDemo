@@ -121,5 +121,44 @@ namespace CropClient
             rtxtConsole.SelectionStart = rtxtConsole.SelectionLength;
             rtxtConsole.ScrollToCaret();
         }
+
+        private void rdoGetInfoAllFields_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
+
+        private void EnableDisableDropDowns()
+        {
+            if (rdoGetInfoAllFields.Checked)
+            {
+                cbxCropType.Enabled = false;
+                cbxFieldName.Enabled = false;
+            }
+            else if (rdoPlant.Checked)
+            {
+                cbxCropType.Enabled = true;
+                cbxFieldName.Enabled = true;
+            }
+            else
+            {
+                cbxCropType.Enabled = false;
+                cbxFieldName.Enabled = true;
+            }
+        }
+
+        private void rdoGetInfoSingleField_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
+
+        private void rdoHarvest_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
+
+        private void rdoPlant_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
     }
 }

@@ -135,6 +135,7 @@
             this.rdoGetInfoAllFields.TabIndex = 7;
             this.rdoGetInfoAllFields.Text = "Get information on all fields";
             this.rdoGetInfoAllFields.UseVisualStyleBackColor = true;
+            this.rdoGetInfoAllFields.CheckedChanged += new System.EventHandler(this.rdoGetInfoAllFields_CheckedChanged);
             // 
             // rdoHarvest
             // 
@@ -145,6 +146,7 @@
             this.rdoHarvest.TabIndex = 6;
             this.rdoHarvest.Text = "Harvest";
             this.rdoHarvest.UseVisualStyleBackColor = true;
+            this.rdoHarvest.CheckedChanged += new System.EventHandler(this.rdoHarvest_CheckedChanged);
             // 
             // rdoPlant
             // 
@@ -155,6 +157,7 @@
             this.rdoPlant.TabIndex = 5;
             this.rdoPlant.Text = "Plant";
             this.rdoPlant.UseVisualStyleBackColor = true;
+            this.rdoPlant.CheckedChanged += new System.EventHandler(this.rdoPlant_CheckedChanged);
             // 
             // rdoGetInfoSingleField
             // 
@@ -167,6 +170,7 @@
             this.rdoGetInfoSingleField.TabStop = true;
             this.rdoGetInfoSingleField.Text = "Get information on single field";
             this.rdoGetInfoSingleField.UseVisualStyleBackColor = true;
+            this.rdoGetInfoSingleField.CheckedChanged += new System.EventHandler(this.rdoGetInfoSingleField_CheckedChanged);
             // 
             // label3
             // 
