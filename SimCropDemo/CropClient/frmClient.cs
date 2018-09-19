@@ -80,8 +80,6 @@ namespace CropClient
                 {
                     rtxtConsole.Text += x.ToString();
                 });
-                ScrollToConsoleEnd();
-
             }
             else if (rdoGetInfoSingleField.Checked)
             {
@@ -103,6 +101,26 @@ namespace CropClient
             }
         }
 
+        private void rdoGetInfoSingleField_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
+
+        private void rdoHarvest_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
+
+        private void rdoPlant_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
+
+        private void rdoGetInfoAllFields_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableDropDowns();
+        }
+
         private string GetIp()
         {
             return System.Net.IPAddress.Parse(txtIp.Text).ToString();
@@ -112,22 +130,12 @@ namespace CropClient
         {
             return Convert.ToInt32(txtPort.Text);
         }
+
         private void ShowWarning(string warning, string title)
         {
             MessageBox.Show(warning, title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
-
-        private void ScrollToConsoleEnd()
-        {
-            rtxtConsole.SelectionStart = rtxtConsole.SelectionLength;
-            rtxtConsole.ScrollToCaret();
-        }
-
-        private void rdoGetInfoAllFields_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableDisableDropDowns();
-        }
-
+        
         private void EnableDisableDropDowns()
         {
             if (rdoGetInfoAllFields.Checked)
@@ -147,19 +155,6 @@ namespace CropClient
             }
         }
 
-        private void rdoGetInfoSingleField_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableDisableDropDowns();
-        }
-
-        private void rdoHarvest_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableDisableDropDowns();
-        }
-
-        private void rdoPlant_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableDisableDropDowns();
-        }
+        
     }
 }
