@@ -39,11 +39,6 @@ namespace CropServer
                 
         }
 
-        public bool IsStarted()
-        {
-            return server.IsStarted;
-        }
-
         private void CreateFields()
         {
             Fields = new List<Field>();
@@ -63,6 +58,18 @@ namespace CropServer
             server.DataReceived += ServerDataReceived;
         }
 
+        private void ServerDataReceived(object sender, SimpleTCP.Message e)
+        {
+            var cmd = JsonToCommand(e.MessageString.TrimEnd('\u0013'));
+            var responsMsg = CommandHandler(cmd);
+            e.Reply(ConvertToJson(responsMsg));
+        }
+
+        public bool IsStarted()
+        {
+            return server.IsStarted;
+        }
+
         private string ConvertToJson(CropServerMessage cropServerMessage)
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(cropServerMessage);
@@ -71,13 +78,6 @@ namespace CropServer
         private CropServerCommand JsonToCommand(string json)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<CropServerCommand>(json);
-        }
-
-        private void ServerDataReceived(object sender, SimpleTCP.Message e)
-        {
-            var cmd = JsonToCommand(e.MessageString.TrimEnd('\u0013'));
-            var responsMsg = CommandHandler(cmd);
-            e.Reply(ConvertToJson(responsMsg));
         }
 
         private CropServerMessage CommandHandler(CropServerCommand cropServerCommand)
@@ -113,7 +113,8 @@ namespace CropServer
                 case ServerCommands.Plant:
                     return new CropServerMessage
                     {
-                        Response = ServerResponses.CommandSuccess
+                        Response = ServerResponses.CommandSuccess,
+                        FieldInfo = new Field()
                     };
 
                 default:
@@ -123,6 +124,20 @@ namespace CropServer
                     };
             }
 
+        }
+
+        private Field HandlePlantCommand(Field fieldInfo)
+        {
+            var index = Fields.FindIndex(x => x.Name == fieldInfo.Name);
+            Fields[index].Plant(fieldInfo.Crop);
+            return Fields[index];
+        }
+
+        private Field HandleHarvestCommand(Field fieldInfo)
+        {
+            var index = Fields.FindIndex(x => x.Name == fieldInfo.Name);
+            Fields[index].Harvest();
+            return Fields[index];
         }
     }
 }
