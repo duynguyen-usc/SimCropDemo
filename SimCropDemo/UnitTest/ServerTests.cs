@@ -175,8 +175,12 @@ namespace UnitTest
         {
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
-            CrpClient.SendGetInfoSingleFieldCommand("someFieldName");
+
+            var fieldName = "field1";
+            CrpClient.SendGetInfoSingleFieldCommand(fieldName);
+
             Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
+            Assert.AreEqual(fieldName, CrpClient.LastServerMessage.FieldInfo.Name);
 
             CrpClient.Disconnect();
             CrpServer.Stop();

@@ -101,7 +101,7 @@ namespace CropServer
                     return new CropServerMessage
                     {
                         Response = ServerResponses.CommandSuccess,
-                        FieldInfo = Fields.Find(x => x.Name == cropServerCommand.Field.Name);
+                        FieldInfo = Fields.Find(x => x.Name == cropServerCommand.Field.Name)
                     };
 
                 case ServerCommands.GetInfoAllFields:
