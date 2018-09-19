@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CropServer;
+using CropServer; 
 
 namespace UnitTest
 {
@@ -121,19 +121,19 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void ServerCommandsTest()
+        public void GetFieldsCommandTest()
         {
             CrpServer.Start();
             CrpClient.Connect(IPADDRESS, PORT);
 
             CrpClient.SendGetFieldsCommand();
             Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
+            Assert.AreEqual(50, CrpClient.LastServerMessage.Fields.Count);
 
-            CrpClient.SendGetInfoAllFiends();
-            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
-
-            CrpClient.SendGetInfoSingleFieldCommand(string.Empty);
-            Assert.AreEqual(ServerResponses.CommandSuccess, CrpClient.LastServerMessage.Response);
+            for (int i=0; i < 50;  i++)
+            {
+                Assert.AreEqual("field" + (i + 1).ToString(), CrpClient.LastServerMessage.Fields[i].Name);
+            }
 
             CrpClient.Disconnect();
             CrpServer.Stop();

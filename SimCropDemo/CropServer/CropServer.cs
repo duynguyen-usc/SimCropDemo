@@ -85,25 +85,47 @@ namespace CropServer
             switch (cropServerCommand.Command)
             {
                 case ServerCommands.TestConnection:
-                    return new CropServerMessage { Response = ServerResponses.TestConnectionSuccess };
+                    return new CropServerMessage
+                    {
+                        Response = ServerResponses.TestConnectionSuccess
+                    };
 
                 case ServerCommands.GetFields:
-                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
+                    return new CropServerMessage
+                    {
+                        Response = ServerResponses.CommandSuccess,
+                        Fields = Fields
+                    };
 
                 case ServerCommands.GetInfoSingleField:
-                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
+                    return new CropServerMessage
+                    {
+                        Response = ServerResponses.CommandSuccess
+                    };
 
                 case ServerCommands.GetInfoAllFields:
-                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
+                    return new CropServerMessage
+                    {
+                        Response = ServerResponses.CommandSuccess
+                    };
 
                 case ServerCommands.Harvest:
-                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
+                    return new CropServerMessage
+                    {
+                        Response = ServerResponses.CommandSuccess
+                    };
 
                 case ServerCommands.Plant:
-                    return new CropServerMessage { Response = ServerResponses.CommandSuccess };
+                    return new CropServerMessage
+                    {
+                        Response = ServerResponses.CommandSuccess
+                    };
 
                 default:
-                    return new CropServerMessage { Response = ServerResponses.BadCommand };
+                    return new CropServerMessage
+                    {
+                        Response = ServerResponses.BadCommand
+                    };
             }
 
         }
