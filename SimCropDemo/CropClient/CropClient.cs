@@ -34,8 +34,7 @@ namespace CropClient
         public void SendPlantCommand(Field fieldInfo)
         {
             var cmd = new CropServerCommand(ServerCommands.Plant);
-            cmd.Field.Name = fieldInfo.Name;
-            cmd.Field.Crop = fieldInfo.Crop;
+            cmd.Field = fieldInfo;
             Send(cmd);
         }
 

@@ -129,9 +129,9 @@ namespace CropServer
 
         private Field HandlePlantCommand(Field fieldInfo)
         {
-            var index = Fields.FindIndex(x => x.Name == fieldInfo.Name);
-            Fields[index].Plant(fieldInfo.Crop);
-            return Fields[index];
+            var tgtField = Fields.Find(x => x.Name == fieldInfo.Name);
+            tgtField.Plant(fieldInfo.Crop);
+            return tgtField;
         }
 
         private Field HandleHarvestCommand(Field fieldInfo)

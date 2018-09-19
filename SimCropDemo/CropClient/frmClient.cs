@@ -26,6 +26,7 @@ namespace CropClient
             {
                 cbxCropType.Items.Add(ct);
             }
+            cbxCropType.SelectedIndex = 1;
             EnableDisableDropDowns();
         }
 
@@ -93,15 +94,17 @@ namespace CropClient
 
                 var fieldInfo = new Field
                 {
-                    Name = cbxFieldName.SelectedText,
+                    Name = cbxFieldName.Text,
                     Crop = new Crop(ct)
                 };
                 client.SendPlantCommand(fieldInfo);
+                rtxtConsole.Text += "Planted: " +  client.LastServerMessage.FieldInfo.ToString();
             }
             else if (rdoHarvest.Checked)
             {
                 var fieldInfo = new Field(cbxFieldName.Text);
                 client.SendHarvestCommand(fieldInfo);
+                rtxtConsole.Text += "Harvested: " + client.LastServerMessage.FieldInfo.ToString();
             }
         }
 
