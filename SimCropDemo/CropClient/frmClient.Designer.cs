@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grpCommands = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.cbxCropType = new System.Windows.Forms.ComboBox();
             this.rdoGetInfoAllFields = new System.Windows.Forms.RadioButton();
@@ -44,7 +45,6 @@
             this.rdoGetInfoSingleField = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.cbxFieldName = new System.Windows.Forms.ComboBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.grpCommands.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,6 +130,16 @@
             this.grpCommands.TabStop = false;
             this.grpCommands.Text = "Commands";
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(270, 110);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(92, 32);
+            this.btnClear.TabIndex = 10;
+            this.btnClear.Text = "Clear Console";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -141,6 +151,7 @@
             // 
             // cbxCropType
             // 
+            this.cbxCropType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCropType.FormattingEnabled = true;
             this.cbxCropType.Location = new System.Drawing.Point(339, 68);
             this.cbxCropType.Name = "cbxCropType";
@@ -204,21 +215,12 @@
             // 
             // cbxFieldName
             // 
+            this.cbxFieldName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxFieldName.FormattingEnabled = true;
             this.cbxFieldName.Location = new System.Drawing.Point(339, 41);
             this.cbxFieldName.Name = "cbxFieldName";
             this.cbxFieldName.Size = new System.Drawing.Size(121, 21);
             this.cbxFieldName.TabIndex = 2;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(270, 110);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(92, 32);
-            this.btnClear.TabIndex = 10;
-            this.btnClear.Text = "Clear Console";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmClient
             // 
