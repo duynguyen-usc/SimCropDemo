@@ -1,0 +1,61 @@
+Test Plan
+
+Test basic normal use cases
+
+   - start server console
+   - start client gui
+   - plant field with wheat using client gui, wait 1 hour
+   - get field info using client gui
+     - verify height of wheat ~60 cm +-3%
+   - harvest wheat field using client gui
+   - get field info using client gui
+     - verify there is no crop in the field now
+   - plant field with corn using client gui, wait 1 hour
+   - get field info using client gui
+     - verify height of corn ~120 cm +- 3% 
+   - harvest corn field using client gui
+   - get field info using client gui
+     - verify there is no crop in the field now
+   - plant field with soybean using client gui, wait 1 hour
+   - get field info using client gui
+     - verify heigh of soybean ~180 cm +-3%
+   - harvest soybean field using client gui
+   - get field info using client gui
+     - verify there is no crop in the field now
+  
+Test basic perfomance
+  - plant crops on 50 fields
+    - verify 50 various crops can be planted
+    - verify each field has a unique string name
+    - verify you can get information for all fields
+  - wait a 10 minutes
+    -verify the various crops have grown within +-3% of expected height
+  - harvest crops on a few random fields
+    - verify 
+  - change code to 50,000,000 fields, verify response time still reasonable the same
+  - run one server, multiple clients on different machines
+    - verify both clients can communicate with the server
+    - plant various crops on various fields using client 1
+      - verify field information using client 1 
+      - verfy field information using client 2
+    - harvest crops using client 2
+      - verify crops planted on client 1 can be harvested using client 2
+      - verify field information using client 1
+    - change or modify fields using client 2
+      - verify field information on client 2
+      - verify field information on client 1
+    -repeat but reverse roles of client 1 and 2
+      -verify all field information
+
+Negative test
+
+  - Don't run the server, try to communicate with server using client
+    - verify error is handled
+  - Plant crop on a field, attempt to plant a different crop on the field
+    - verify no errors occur
+  - Harvest an empty field
+    - verify no errors occur
+  - Enter bad field name
+    - verify error is handled
+  - Enter bad crop type
+    -verify error is handled
