@@ -1,0 +1,19 @@
+Requirements
+  Field
+   - can grow wheat, corn, or soybeans
+   - wheat grows at 1 cm per minute
+   - corn grows at 2 cm per minute
+   - soybeans grow at 3 cm per minute
+   - When a crop is harvested, the specified field is empty until something is planted
+   - When a crop is planted, it starts growing at the previously specified rate
+  Server
+  -should manage 50 fields
+  - each field has a unique string name
+  - response times should not change if there are 50 or 50,000,000 fields
+  Client
+  - should let the user plant to a specified field
+  - should let the user harvest crops from a specified field
+  - should let the user query the type and height of crop of all the fields
+  - should let the user query the type and height of crop of a specified field
+
+
